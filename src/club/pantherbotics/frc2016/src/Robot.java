@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import club.pantherbotics.frc2016.src.commands.ExampleCommand;
-import club.pantherbotics.frc2016.src.subsystems.ExampleSubsystem;
+import club.pantherbotics.frc2016.src.subsystems.BaseSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static final BaseSubsystem exampleSubsystem = new BaseSubsystem();
 	public static OI oi;
 
     Command autonomousCommand;
