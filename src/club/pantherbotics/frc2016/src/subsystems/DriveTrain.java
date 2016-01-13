@@ -45,18 +45,23 @@ public class DriveTrain extends Subsystem {
      * Tank style driving for the DriveTrain.
      * 
      * @param left
-     *            Speed in range [-1,1]
      * @param right
-     *            Speed in range [-1,1]
      */
     public void tankDrive(double left, double right) {
         robotDrive.tankDrive(left, right);
     }
 
+    /**
+     * Stops all motors in the drive train
+     */
     public void stopMotors() {
         robotDrive.stopMotor();
     }
 
+    /**
+     * UNTESTED
+     * @param joystick
+     */
     public void mecanumDrive(Joystick joystick) {
         robotDrive.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), joystick.getTwist(), gyro.getAngle());
     }
