@@ -15,9 +15,9 @@ public class OI {
     //// joystick.
     // You create one by telling it which joystick it's on and which button
     // number it is.
-    public static Joystick leftJoystick  = new Joystick(RobotMap.LEFT_JOYSTICK);
-    public static Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
-    public static Button   button        = new JoystickButton(leftJoystick, 1);
+    public Joystick leftJoystick  = new Joystick(RobotMap.LEFT_JOYSTICK);
+    public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
+    public Button   button        = new JoystickButton(leftJoystick, 1);
 
     // There are a few additional built in buttons you can use. Additionally,
 

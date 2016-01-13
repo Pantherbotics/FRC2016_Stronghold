@@ -1,6 +1,5 @@
 package club.pantherbotics.frc2016.src.commands;
 
-import club.pantherbotics.frc2016.src.OI;
 import club.pantherbotics.frc2016.src.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -20,7 +19,7 @@ public class MecanumDriveWithJoystick extends Command {
     @Override
     protected void execute() {
         // TODO Auto-generated method stub
-        Robot.driveTrain.mecanumDrive(OI.rightJoystick);
+        Robot.driveTrain.mecanumDrive(Robot.oi.rightJoystick);
     }
 
     @Override

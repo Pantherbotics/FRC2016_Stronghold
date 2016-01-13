@@ -1,6 +1,7 @@
 package club.pantherbotics.frc2016.src.subsystems;
 
 import club.pantherbotics.frc2016.src.RobotMap;
+import club.pantherbotics.frc2016.src.commands.MecanumDriveWithJoystick;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
@@ -83,7 +84,7 @@ public class DriveTrain extends Subsystem {
     @Override
     protected void initDefaultCommand() {
         // TODO Auto-generated method stub
-
+        setDefaultCommand(new MecanumDriveWithJoystick());
     }
 
 }
