@@ -4,9 +4,11 @@ package club.pantherbotics.frc2016.src;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import club.pantherbotics.frc2016.src.commands.ExampleCommand;
 import club.pantherbotics.frc2016.src.subsystems.BaseSubsystem;
+import club.pantherbotics.frc2016.src.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -24,6 +26,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public static final BaseSubsystem exampleSubsystem = new BaseSubsystem();
 	public static OI oi;
+    public static final DriveTrain driveTrain = new DriveTrain();
 
     Command autonomousCommand;
     SendableChooser chooser;
