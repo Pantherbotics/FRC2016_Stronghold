@@ -17,7 +17,7 @@ public class DriveTrain extends Subsystem {
     private final AnalogGyro gyro;
 
     public DriveTrain() {
-        super();
+        super("Drive Train");
         rearRightMotor = new CANTalon(RobotMap.BACK_RIGHT_DRIVE_MOTOR);
         rearLeftMotor = new CANTalon(RobotMap.BACK_LEFT_DRIVE_MOTOR);
         frontRightMotor = new CANTalon(RobotMap.FRONT_RIGHT_DRIVE_MOTOR);
