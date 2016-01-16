@@ -1,5 +1,6 @@
 package club.pantherbotics.frc2016.src;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -8,8 +9,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
-
+public class OI {	
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a
     //// joystick.
@@ -18,6 +18,13 @@ public class OI {
     public Joystick leftJoystick  = new Joystick(RobotMap.LEFT_JOYSTICK);
     public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
     public Button   button        = new JoystickButton(leftJoystick, 1);
+    public CameraServer camera = CameraServer.getInstance();
+	
+    public OI() {
+    	//set up the LifeCAM camera
+    	camera.setQuality(50);
+    	camera.startAutomaticCapture("cam0");
+	}
 
     // There are a few additional built in buttons you can use. Additionally,
 
