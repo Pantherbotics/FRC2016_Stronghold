@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3863.subsystems;
 
 import org.usfirst.frc.team3863.RobotMap;
-import org.usfirst.frc.team3863.commands.MecanumDriveWithJoystick;
+import org.usfirst.frc.team3863.commands.TankDriveWithJoystick;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem {
 
-    private final CANTalon   frontRightMotor, frontLeftMotor, rearRightMotor, rearLeftMotor;
+    private final CANTalon frontRightMotor, frontLeftMotor, rearRightMotor, rearLeftMotor;
     private final RobotDrive robotDrive;
     private final AnalogGyro gyro;
 
@@ -44,12 +44,16 @@ public class DriveTrain extends Subsystem {
 
     /**
      * Tank style driving for the DriveTrain.
-     * 
+     *
      * @param left
      * @param right
      */
     public void tankDrive(double left, double right) {
         robotDrive.tankDrive(left, right);
+    }
+
+    public void tankDrive(Joystick left, Joystick right) {
+        this.tankDrive(left.getX(), right.getX());
     }
 
     /**
@@ -61,6 +65,7 @@ public class DriveTrain extends Subsystem {
 
     /**
      * UNTESTED
+     *
      * @param joystick
      */
     public void mecanumDrive(Joystick joystick) {
@@ -84,7 +89,7 @@ public class DriveTrain extends Subsystem {
     @Override
     protected void initDefaultCommand() {
         // TODO Auto-generated method stub
-        setDefaultCommand(new MecanumDriveWithJoystick());
+        setDefaultCommand(new TankDriveWithJoystick());
     }
 
 }

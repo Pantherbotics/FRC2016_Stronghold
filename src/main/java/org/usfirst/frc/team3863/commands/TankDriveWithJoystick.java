@@ -3,9 +3,9 @@ package org.usfirst.frc.team3863.commands;
 import org.usfirst.frc.team3863.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class MecanumDriveWithJoystick extends Command {
+public class TankDriveWithJoystick extends Command {
 
-    public MecanumDriveWithJoystick() {
+    public TankDriveWithJoystick() {
         // TODO Auto-generated constructor stub
         requires(Robot.driveTrain);
     }
@@ -19,7 +19,8 @@ public class MecanumDriveWithJoystick extends Command {
     @Override
     protected void execute() {
         // TODO Auto-generated method stub
-        Robot.driveTrain.mecanumDrive(Robot.oi.rightJoystick);
+//        Robot.driveTrain.mecanumDrive(Robot.oi.rightJoystick);
+        Robot.driveTrain.tankDrive(Robot.oi.leftJoystick, Robot.oi.rightJoystick);
     }
 
     @Override
