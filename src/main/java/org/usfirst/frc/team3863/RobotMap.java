@@ -18,20 +18,28 @@ public class RobotMap {
     // public static int rangefinderModule = 1;
 
     // CAN
-    public static final int BACK_LEFT_DRIVE_MOTOR   = 11;
-    public static final int BACK_RIGHT_DRIVE_MOTOR  = 12;
-    public static final int FRONT_LEFT_DRIVE_MOTOR  = 13;
+    public static final int BACK_LEFT_DRIVE_MOTOR = 11;
+    public static final int BACK_RIGHT_DRIVE_MOTOR = 12;
+    public static final int FRONT_LEFT_DRIVE_MOTOR = 13;
     public static final int FRONT_RIGHT_DRIVE_MOTOR = 14;
 
+    public static final int ARM_MOTOR = 15;
+    public static final int END_EFFECTOR_MOTOR = 16;
+
+
     // JOYSTICKS
-    public static final int RIGHT_JOYSTICK          = 1;
-    public static final int LEFT_JOYSTICK           = 2;
+    public static final int RIGHT_JOYSTICK = 1;
+    public static final int LEFT_JOYSTICK = 2;
 
     // ANALOG
-    public static final int GRYO                    = 1;
+    public static final int GRYO = 1;
 
     // DIGITAL
 
     // SPIKE
 
+    // SOLENOID
+    public static final int DRIVE_TRAIN_SOLENOID = 1;
+    public static final int ARM_SOLENOID = 2;
+    public static final int END_EFFECTOR_SOLENOID = 3;
 }

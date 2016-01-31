@@ -1,6 +1,9 @@
 package org.usfirst.frc.team3863;
 
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -15,9 +18,27 @@ public class OI {
     //// joystick.
     // You create one by telling it which joystick it's on and which button
     // number it is.
-    public Joystick leftJoystick  = new Joystick(RobotMap.LEFT_JOYSTICK);
+    public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
     public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
-    public Button   button        = new JoystickButton(leftJoystick, 1);
+    public Button button = new JoystickButton(leftJoystick, 1);
+
+    public CANTalon frontLeftWheel = new CANTalon(RobotMap.FRONT_LEFT_DRIVE_MOTOR);
+    public CANTalon frontRightWheel = new CANTalon(RobotMap.FRONT_RIGHT_DRIVE_MOTOR);
+    public CANTalon backLeftWheel = new CANTalon(RobotMap.BACK_LEFT_DRIVE_MOTOR);
+    public CANTalon backRightWheel = new CANTalon(RobotMap.BACK_RIGHT_DRIVE_MOTOR);
+
+    public CANTalon armMotor = new CANTalon(RobotMap.ARM_MOTOR);
+    public CANTalon endEffectorMoto = new CANTalon(RobotMap.END_EFFECTOR_MOTOR);
+
+
+    public Solenoid driveTrainSolenoid = new Solenoid(RobotMap.DRIVE_TRAIN_SOLENOID);
+    public Solenoid armSolenoid = new Solenoid(RobotMap.ARM_SOLENOID);
+    public Solenoid endEffectorSolenoid = new Solenoid(RobotMap.END_EFFECTOR_SOLENOID);
+
+    public OI() {
+
+    }
+
 
     // There are a few additional built in buttons you can use. Additionally,
 
