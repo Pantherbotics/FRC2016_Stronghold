@@ -1,11 +1,12 @@
 package org.usfirst.frc.team3863;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team3863.commands.ExampleCommand;
+import org.usfirst.frc.team3863.wrappers.CANTalonWrapper;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -22,10 +23,13 @@ public class OI {
     public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
     public Button button = new JoystickButton(leftJoystick, 1);
 
-    public CANTalon frontLeftWheel = new CANTalon(RobotMap.FRONT_LEFT_DRIVE_MOTOR);
-    public CANTalon frontRightWheel = new CANTalon(RobotMap.FRONT_RIGHT_DRIVE_MOTOR);
-    public CANTalon backLeftWheel = new CANTalon(RobotMap.BACK_LEFT_DRIVE_MOTOR);
-    public CANTalon backRightWheel = new CANTalon(RobotMap.BACK_RIGHT_DRIVE_MOTOR);
+//    public CANTalon leftMotor = new CANTalon(RobotMap.RIGHT_DRIVE_MOTOR_0);
+//    public CANTalon frontRightWheel = new CANTalon(RobotMap.RIGHT_DRIVE_MOTOR_1);
+//    public CANTalon backLeftWheel = new CANTalon(RobotMap.LEFT_DRIVE_MOTOR_1);
+//    public CANTalon backRightWheel = new CANTalon(RobotMap.LEFT_DRIVE_MOTOR_1);
+
+    public CANTalonWrapper leftMotors = new CANTalonWrapper(RobotMap.LEFT_DRIVE_MOTOR_0,RobotMap.LEFT_DRIVE_MOTOR_1);
+    public CANTalonWrapper rightMotors = new CANTalonWrapper(RobotMap.RIGHT_DRIVE_MOTOR_0,RobotMap.RIGHT_DRIVE_MOTOR_1);
 
     public CANTalon armMotor = new CANTalon(RobotMap.ARM_MOTOR);
     public CANTalon endEffectorMoto = new CANTalon(RobotMap.END_EFFECTOR_MOTOR);
@@ -36,7 +40,7 @@ public class OI {
     public Solenoid endEffectorSolenoid = new Solenoid(RobotMap.END_EFFECTOR_SOLENOID);
 
     public OI() {
-
+        new JoystickButton(leftJoystick,5).whenPressed(new ExampleCommand());
     }
 
 
