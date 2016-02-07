@@ -39,8 +39,7 @@ public class OI {
 
     public Compressor compressor = new Compressor(7);
 
-    public Solenoid driveTrainSolenoid_0 = new Solenoid(RobotMap.DRIVE_TRAIN_SOLENOID_0);
-    public Solenoid driveTrainSolenoid_1 = new Solenoid(RobotMap.DRIVE_TRAIN_SOLENOID_1);
+    public DoubleSolenoid driveTrainSolenoid = new DoubleSolenoid(RobotMap.DRIVE_TRAIN_SOLENOID_0, RobotMap.DRIVE_TRAIN_SOLENOID_1);
     public Solenoid armSolenoid = new Solenoid(RobotMap.ARM_SOLENOID);
     public Solenoid endEffectorSolenoid = new Solenoid(RobotMap.END_EFFECTOR_SOLENOID);
 
