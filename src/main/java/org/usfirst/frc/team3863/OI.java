@@ -28,19 +28,21 @@ public class OI {
 //    public CANTalon backLeftWheel = new CANTalon(RobotMap.LEFT_DRIVE_MOTOR_1);
 //    public CANTalon backRightWheel = new CANTalon(RobotMap.LEFT_DRIVE_MOTOR_1);
 
-    public CANTalonWrapper leftMotors = new CANTalonWrapper(RobotMap.LEFT_DRIVE_MOTOR_0,RobotMap.LEFT_DRIVE_MOTOR_1);
-    public CANTalonWrapper rightMotors = new CANTalonWrapper(RobotMap.RIGHT_DRIVE_MOTOR_0,RobotMap.RIGHT_DRIVE_MOTOR_1);
+    public CANTalonWrapper leftMotors = new CANTalonWrapper(RobotMap.LEFT_DRIVE_MOTOR_0, RobotMap.LEFT_DRIVE_MOTOR_1);
+    public CANTalonWrapper rightMotors = new CANTalonWrapper(RobotMap.RIGHT_DRIVE_MOTOR_0, RobotMap.RIGHT_DRIVE_MOTOR_1);
 
     public CANTalon armMotor = new CANTalon(RobotMap.ARM_MOTOR);
     public CANTalon endEffectorMoto = new CANTalon(RobotMap.END_EFFECTOR_MOTOR);
 
+    public CANTalon tempMoto = new CANTalon(31);
 
     public Solenoid driveTrainSolenoid = new Solenoid(RobotMap.DRIVE_TRAIN_SOLENOID);
     public Solenoid armSolenoid = new Solenoid(RobotMap.ARM_SOLENOID);
     public Solenoid endEffectorSolenoid = new Solenoid(RobotMap.END_EFFECTOR_SOLENOID);
 
     public OI() {
-        new JoystickButton(leftJoystick,5).whenPressed(new ExampleCommand());
+        rightMotors.setInverted(true);
+        new JoystickButton(leftJoystick, 5).whileHeld(new ExampleCommand());
     }
 
 

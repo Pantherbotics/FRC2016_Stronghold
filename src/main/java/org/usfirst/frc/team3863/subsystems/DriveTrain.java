@@ -43,7 +43,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void tankDrive(Joystick left, Joystick right) {
-        this.tankDrive(left.getX(), right.getX());
+        this.tankDrive(left.getY(), right.getY());
     }
 
     /**

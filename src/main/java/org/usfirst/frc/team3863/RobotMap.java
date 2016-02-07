@@ -18,10 +18,10 @@ public class RobotMap {
     // public static int rangefinderModule = 1;
 
     // CAN
-    public static final int LEFT_DRIVE_MOTOR_0 = 1;
-    public static final int LEFT_DRIVE_MOTOR_1 = 2;
-    public static final int RIGHT_DRIVE_MOTOR_0 = 3;
-    public static final int RIGHT_DRIVE_MOTOR_1 = 4;
+    public static final int LEFT_DRIVE_MOTOR_0 = 40;
+    public static final int LEFT_DRIVE_MOTOR_1 = 41;
+    public static final int RIGHT_DRIVE_MOTOR_0 = 31;//32;
+    public static final int RIGHT_DRIVE_MOTOR_1 = 32;
 
     public static final int ARM_MOTOR = 15;
     public static final int END_EFFECTOR_MOTOR = 16;

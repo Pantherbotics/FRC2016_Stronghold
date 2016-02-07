@@ -21,11 +21,11 @@ import org.usfirst.frc.team3863.subsystems.DriveTrain;
  */
 public class Robot extends IterativeRobot {
 
-    /**
-     * This is a Subsystem
-     */
-    public static final BaseSubsystem exampleSubsystem = new BaseSubsystem();
-    public static OI oi;
+	/**
+	 * This is a Subsystem 
+	 */
+	public static final BaseSubsystem exampleSubsystem = new BaseSubsystem();
+	public static OI oi;
     public static final DriveTrain driveTrain = new DriveTrain();
 
     Command autonomousCommand;
@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-        oi = new OI();
+		oi = new OI();
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
