@@ -12,16 +12,26 @@ public class ExampleCommand extends Command {
 
     public ExampleCommand() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.exampleSubsystem);
+//        requires(Robot.exampleSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.oi.leftMotors.set(1);
+        Robot.oi.compressor.start();
     }
+
+    boolean i = true;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        if (i) {
+            Robot.oi.driveTrainSolenoid_1.set(false);
+            Robot.oi.driveTrainSolenoid_0.set(true);
+        } else {
+            Robot.oi.driveTrainSolenoid_0.set(false);
+            Robot.oi.driveTrainSolenoid_1.set(true);
+        }
+        i = !i;
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,12 +41,10 @@ public class ExampleCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-        Robot.oi.tempMoto.disable();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        Robot.oi.tempMoto.disable();
     }
 }

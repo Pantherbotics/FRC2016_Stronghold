@@ -23,8 +23,8 @@ public class RobotMap {
     public static final int RIGHT_DRIVE_MOTOR_0 = 31;//32;
     public static final int RIGHT_DRIVE_MOTOR_1 = 32;
 
-    public static final int ARM_MOTOR = 15;
-    public static final int END_EFFECTOR_MOTOR = 16;
+    public static final int ARM_MOTOR = 30;
+    public static final int END_EFFECTOR_MOTOR = 33;
 
 
     // JOYSTICKS
@@ -32,14 +32,15 @@ public class RobotMap {
     public static final int LEFT_JOYSTICK = 2;
 
     // ANALOG
-    public static final int GRYO = 1;
+    public static final int GRYO = 0;
 
     // DIGITAL
 
     // SPIKE
 
     // SOLENOID
-    public static final int DRIVE_TRAIN_SOLENOID = 1;
+    public static final int DRIVE_TRAIN_SOLENOID_0 = 0;
+    public static final int DRIVE_TRAIN_SOLENOID_1 = 1;
     public static final int ARM_SOLENOID = 2;
     public static final int END_EFFECTOR_SOLENOID = 3;
 }

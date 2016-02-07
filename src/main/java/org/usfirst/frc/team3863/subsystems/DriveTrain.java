@@ -13,14 +13,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem {
 
-    private final AnalogGyro gyro;
+//    private final AnalogGyro gyro;
 
     public DriveTrain() {
         super("Drive Train");
-
-        gyro = new AnalogGyro(RobotMap.GRYO);
-        LiveWindow.addSensor("Drive Train", "Gyro", gyro);
-
     }
 
     public void log() {
@@ -28,7 +24,6 @@ public class DriveTrain extends Subsystem {
         SmartDashboard.putNumber("Right Position", Robot.oi.rightMotors.getPosition());
         SmartDashboard.putNumber("Left Speed", Robot.oi.leftMotors.getSpeed());
         SmartDashboard.putNumber("Right Speed", Robot.oi.rightMotors.getSpeed());
-        SmartDashboard.putNumber("Gyro", gyro.getAngle());
     }
 
     /**
@@ -38,6 +33,7 @@ public class DriveTrain extends Subsystem {
      * @param right - Value for right motors
      */
     public void tankDrive(double left, double right) {
+        log();
         Robot.oi.leftMotors.set(left);
         Robot.oi.rightMotors.set(right);
     }
@@ -54,25 +50,10 @@ public class DriveTrain extends Subsystem {
         Robot.oi.rightMotors.stopMotors();
     }
 
-
-    /**
-     * @return The robots heading in degrees.
-     */
-    public double getHeading() {
-        return gyro.getAngle();
-    }
-
-    /**
-     * Reset the robots sensors to the zero states.
-     */
-    public void reset() {
-        gyro.reset();
-    }
-
     @Override
     protected void initDefaultCommand() {
         // TODO Auto-generated method stub
-        setDefaultCommand(new TankDriveWithJoystick());
+//        setDefaultCommand(new TankDriveWithJoystick());
     }
 
 }

@@ -1,10 +1,11 @@
 package org.usfirst.frc.team3863;
 
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.communication.NIRioStatus;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3863.commands.ExampleCommand;
 import org.usfirst.frc.team3863.wrappers.CANTalonWrapper;
 
@@ -34,15 +35,24 @@ public class OI {
     public CANTalon armMotor = new CANTalon(RobotMap.ARM_MOTOR);
     public CANTalon endEffectorMoto = new CANTalon(RobotMap.END_EFFECTOR_MOTOR);
 
-    public CANTalon tempMoto = new CANTalon(31);
+//    public CANTalon tempMoto = new CANTalon(31);
 
-    public Solenoid driveTrainSolenoid = new Solenoid(RobotMap.DRIVE_TRAIN_SOLENOID);
+    public Compressor compressor = new Compressor(7);
+
+    public Solenoid driveTrainSolenoid_0 = new Solenoid(RobotMap.DRIVE_TRAIN_SOLENOID_0);
+    public Solenoid driveTrainSolenoid_1 = new Solenoid(RobotMap.DRIVE_TRAIN_SOLENOID_1);
     public Solenoid armSolenoid = new Solenoid(RobotMap.ARM_SOLENOID);
     public Solenoid endEffectorSolenoid = new Solenoid(RobotMap.END_EFFECTOR_SOLENOID);
 
     public OI() {
+//        System.err.println(gyro);
+//        gyro.initGyro();
+//        gyro.calibrate();
+        compressor.stop();
+        SmartDashboard.putData("Compressor", compressor);
         rightMotors.setInverted(true);
-        new JoystickButton(leftJoystick, 5).whileHeld(new ExampleCommand());
+//        compressor.start();
+        new JoystickButton(leftJoystick, 5).whenPressed(new ExampleCommand());
     }
 
 
