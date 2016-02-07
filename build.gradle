@@ -21,7 +21,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'eclipse'
+//apply plugin: 'eclipse'
 apply plugin: 'GradleRIO'                                 //Apply the GradleRIO plugin
 
 gradlerio.robotClass = "org.usfirst.frc.team3863.Robot"   //The class for the main Robot Class. Used in manifest
@@ -29,6 +29,7 @@ gradlerio.team = "3863"                                   //Your FRC team number
 //gradlerio.rioIP = "10.53.33.20"                         //Uncomment to specify the IP address of the RIO
 
 def robotManifest = {
+//    attributes 'Main-Class': 'org.usfirst.frc.team3863.Robot'
     attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
     attributes 'Robot-Class': gradlerio.robotClass
 }
