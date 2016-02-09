@@ -14,6 +14,8 @@ import org.usfirst.frc.team3863.commands.ExampleCommand;
 import org.usfirst.frc.team3863.subsystems.BaseSubsystem;
 import org.usfirst.frc.team3863.subsystems.DriveTrain;
 
+import java.io.PrintStream;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -33,11 +35,19 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser chooser;
 
+    final PrintStream originalOut = System.out;
+
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
+
+        //Hackey...
+        PrintStream interceptor = new InterceptorPS(originalOut);
+        System.setOut(interceptor);
+
+
         oi = new OI();
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new ExampleCommand());
