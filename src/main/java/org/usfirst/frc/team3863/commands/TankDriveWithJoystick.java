@@ -19,7 +19,6 @@ public class TankDriveWithJoystick extends Command {
     @Override
     protected void execute() {
         // TODO Auto-generated method stub
-//        Robot.driveTrain.mecanumDrive(Robot.oi.rightJoystick);
         Robot.driveTrain.tankDrive(Robot.oi.leftJoystick, Robot.oi.rightJoystick);
     }
 

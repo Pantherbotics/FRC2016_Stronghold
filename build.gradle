@@ -1,9 +1,12 @@
 group 'club.pantherbotics.frc'
 version '1.0-SNAPSHOT'
 
+apply plugin: 'java'
+apply plugin: 'idea'
+
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.5'
-  distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+    gradleVersion = '2.5'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
 
 buildscript {
@@ -15,12 +18,10 @@ buildscript {
         }
     }
     dependencies {
-        classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+'			//Change this line if you wish to Update GradleRIO
+        classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+'
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
 //apply plugin: 'eclipse'
 apply plugin: 'GradleRIO'                                 //Apply the GradleRIO plugin
 

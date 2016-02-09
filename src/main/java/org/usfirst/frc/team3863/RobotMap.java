@@ -26,6 +26,7 @@ public class RobotMap {
     public static final int ARM_MOTOR = 30;
     public static final int END_EFFECTOR_MOTOR = 33;
 
+    public static final int COMPRESSOR = 0;
 
     // JOYSTICKS
     public static final int RIGHT_JOYSTICK = 1;
