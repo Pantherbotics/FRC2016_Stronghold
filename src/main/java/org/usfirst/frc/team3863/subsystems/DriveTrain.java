@@ -33,7 +33,7 @@ public class DriveTrain extends Subsystem {
      * @param right - Value for right motors
      */
     public void tankDrive(double left, double right) {
-        log();
+//        log();
         Robot.oi.leftMotors.set(left);
         Robot.oi.rightMotors.set(right);
     }
@@ -53,7 +53,7 @@ public class DriveTrain extends Subsystem {
     @Override
     protected void initDefaultCommand() {
         // TODO Auto-generated method stub
-//        setDefaultCommand(new TankDriveWithJoystick());
+        setDefaultCommand(new TankDriveWithJoystick());
     }
 
 }

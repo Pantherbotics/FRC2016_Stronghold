@@ -39,19 +39,15 @@ public class OI {
 
     public Compressor compressor = new Compressor(7);
 
+    public PowerDistributionPanel powerDistributionPanel = new PowerDistributionPanel();
+
     public DoubleSolenoid driveTrainSolenoid = new DoubleSolenoid(RobotMap.DRIVE_TRAIN_SOLENOID_0, RobotMap.DRIVE_TRAIN_SOLENOID_1);
     public Solenoid armSolenoid = new Solenoid(RobotMap.ARM_SOLENOID);
     public Solenoid endEffectorSolenoid = new Solenoid(RobotMap.END_EFFECTOR_SOLENOID);
 
     public OI() {
-//        System.err.println(gyro);
-//        gyro.initGyro();
-//        gyro.calibrate();
-        compressor.stop();
-        SmartDashboard.putData("Compressor", compressor);
+        compressor.start();
         rightMotors.setInverted(true);
-//        compressor.start();
-        new JoystickButton(leftJoystick, 5).whenPressed(new ExampleCommand());
     }
 
 
