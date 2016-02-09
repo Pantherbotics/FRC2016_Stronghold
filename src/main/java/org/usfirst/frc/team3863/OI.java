@@ -37,7 +37,6 @@ public class OI {
 
 //    public CANTalon tempMoto = new CANTalon(31);
 
-    public Compressor compressor = new Compressor(7);
 
     public PowerDistributionPanel powerDistributionPanel = new PowerDistributionPanel();
 
@@ -46,8 +45,8 @@ public class OI {
     public Solenoid endEffectorSolenoid = new Solenoid(RobotMap.END_EFFECTOR_SOLENOID);
 
     public OI() {
-        compressor.start();
         rightMotors.setInverted(true);
+        new JoystickButton(leftJoystick, 5).whenPressed(new ExampleCommand());
     }
 
 
