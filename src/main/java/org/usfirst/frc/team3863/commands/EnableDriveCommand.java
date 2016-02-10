@@ -1,11 +1,9 @@
 package org.usfirst.frc.team3863.commands;
 
 /**
- * Created by robotics on 2/8/2016.
+ * Created by robotics on 2/9/2016.
  */
-public class SpinCommand extends BaseCommand {
-
-
+public class EnableDriveCommand extends BaseCommand {
     @Override
     protected void initialize() {
         requires(driveTrain);
@@ -13,7 +11,7 @@ public class SpinCommand extends BaseCommand {
 
     @Override
     protected void execute() {
-
+        driveTrain.enableMotors();
     }
 
     @Override

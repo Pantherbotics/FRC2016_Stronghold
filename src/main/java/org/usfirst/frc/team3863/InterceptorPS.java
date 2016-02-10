@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3863;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
 
@@ -26,56 +28,68 @@ public class InterceptorPS extends PrintStream {
 
         } else {
             //write normal
+
         }
     }
 
+
     @Override
     public void println(Object x) {
+        super.println(x);
         printlnobj(x);
     }
 
     @Override
     public void println(String x) {
+        super.println(x);
         printlnobj(x);
     }
 
     @Override
     public void println(double x) {
+        super.println(x);
         printlnobj(x);
     }
 
     @Override
     public void println(float x) {
+        super.println(x);
         printlnobj(x);
     }
 
     @Override
     public void println(long x) {
+        super.println(x);
         printlnobj(x);
     }
 
     @Override
     public void println(int x) {
+        super.println(x);
         printlnobj(x);
     }
 
     @Override
     public void println(boolean x) {
+        super.println(x);
         printlnobj(x);
     }
 
     @Override
     public void println() {
+        super.println();
         printlnobj("\n\r");
     }
 
     @Override
     public void println(char x) {
+        super.println(x);
         printlnobj(x);
     }
 
     @Override
     public void println(char[] x) {
+        super.println(x);
         printlnobj(x);
     }
 }

@@ -2,17 +2,14 @@
 package org.usfirst.frc.team3863;
 
 
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team3863.commands.ExampleCommand;
-import org.usfirst.frc.team3863.subsystems.BaseSubsystem;
-import org.usfirst.frc.team3863.subsystems.DriveTrain;
+import org.usfirst.frc.team3863.commands.BaseCommand;
+import org.usfirst.frc.team3863.commands.EnableDriveCommand;
 
 import java.io.PrintStream;
 
@@ -28,9 +25,7 @@ public class Robot extends IterativeRobot {
     /**
      * This is a Subsystem
      */
-    public static final BaseSubsystem exampleSubsystem = new BaseSubsystem();
     public static OI oi;
-    public static final DriveTrain driveTrain = new DriveTrain();
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -43,14 +38,12 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 
+        BaseCommand.init();
+
         //Hackey...
         PrintStream interceptor = new InterceptorPS(originalOut);
         System.setOut(interceptor);
 
-
-        oi = new OI();
-        chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
 
@@ -111,27 +104,13 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        Robot.oi.leftMotors.enable();
-        Robot.oi.leftMotors.enableControl();
-        Robot.oi.rightMotors.enable();
-        Robot.oi.rightMotors.enableControl();
+        new EnableDriveCommand().start();
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        if (Robot.oi.leftJoystick.getTrigger()) {
-            Robot.oi.driveTrainSolenoid.set(DoubleSolenoid.Value.kForward);
-        }
-        if (Robot.oi.rightJoystick.getTrigger()) {
-            Robot.oi.driveTrainSolenoid.set(DoubleSolenoid.Value.kReverse);
-        }
-
-//        SmartDashboard.putData("Compressor", Robot.oi.compressor);
-//        SmartDashboard.putData("Solenoid", Robot.oi.driveTrainSolenoid);
-
-
         Scheduler.getInstance().run();
     }
 

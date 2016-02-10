@@ -1,14 +1,23 @@
 package org.usfirst.frc.team3863.commands;
 
 /**
- * Created by robotics on 2/8/2016.
+ * Created by robotics on 2/9/2016.
  */
-public class SpinCommand extends BaseCommand {
+public class ExtendBigPistonCommand extends BaseCommand {
 
+    private boolean retract = false;
+
+    public ExtendBigPistonCommand() {
+        this(false);
+    }
+
+    public ExtendBigPistonCommand(boolean retract) {
+        this.retract = retract;
+    }
 
     @Override
     protected void initialize() {
-        requires(driveTrain);
+
     }
 
     @Override

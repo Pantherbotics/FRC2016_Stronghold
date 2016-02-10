@@ -12,8 +12,12 @@ public class CANTalonWrapper {
     public CANTalonWrapper(int i0, int i1) {
         m0 = new CANTalon(i0);
         m1 = new CANTalon(i1);
+    }
 
-
+    public CANTalonWrapper(int i0, int i1, boolean invert) {
+        m0 = new CANTalon(i0);
+        m1 = new CANTalon(i1);
+        setInverted(invert);
     }
 
     public void set(double outputValue) {

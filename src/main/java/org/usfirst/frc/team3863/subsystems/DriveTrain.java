@@ -1,29 +1,28 @@
 package org.usfirst.frc.team3863.subsystems;
 
-import org.usfirst.frc.team3863.Robot;
 import org.usfirst.frc.team3863.RobotMap;
-import org.usfirst.frc.team3863.commands.TankDriveWithJoystick;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.CANTalon;
+import org.usfirst.frc.team3863.commands.TankDriveWithJoystickCommand;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team3863.wrappers.CANTalonWrapper;
 
 public class DriveTrain extends Subsystem {
 
-//    private final AnalogGyro gyro;
+    //    private final AnalogGyro gyro;
+    public CANTalonWrapper leftMotors = new CANTalonWrapper(RobotMap.LEFT_DRIVE_MOTOR_0, RobotMap.LEFT_DRIVE_MOTOR_1);
+    public CANTalonWrapper rightMotors = new CANTalonWrapper(RobotMap.RIGHT_DRIVE_MOTOR_0, RobotMap.RIGHT_DRIVE_MOTOR_1, true);
+
 
     public DriveTrain() {
         super("Drive Train");
     }
 
     public void log() {
-        SmartDashboard.putNumber("Left Position", Robot.oi.leftMotors.getEncPosition());
-        SmartDashboard.putNumber("Right Position", Robot.oi.rightMotors.getPosition());
-        SmartDashboard.putNumber("Left Speed", Robot.oi.leftMotors.getSpeed());
-        SmartDashboard.putNumber("Right Speed", Robot.oi.rightMotors.getSpeed());
+        SmartDashboard.putNumber("Left Position", leftMotors.getEncPosition());
+        SmartDashboard.putNumber("Right Position", rightMotors.getPosition());
+        SmartDashboard.putNumber("Left Speed", leftMotors.getSpeed());
+        SmartDashboard.putNumber("Right Speed", rightMotors.getSpeed());
     }
 
     /**
@@ -33,9 +32,8 @@ public class DriveTrain extends Subsystem {
      * @param right - Value for right motors
      */
     public void tankDrive(double left, double right) {
-//        log();
-        Robot.oi.leftMotors.set(left);
-        Robot.oi.rightMotors.set(right);
+        leftMotors.set(left);
+        rightMotors.set(right);
     }
 
     public void tankDrive(Joystick left, Joystick right) {
@@ -46,14 +44,21 @@ public class DriveTrain extends Subsystem {
      * Stops all motors in the drive train
      */
     public void stopMotors() {
-        Robot.oi.leftMotors.stopMotors();
-        Robot.oi.rightMotors.stopMotors();
+        leftMotors.stopMotors();
+        rightMotors.stopMotors();
+    }
+
+    public void enableMotors() {
+        leftMotors.enable();
+        leftMotors.enableControl();
+        rightMotors.enable();
+        rightMotors.enableControl();
     }
 
     @Override
     protected void initDefaultCommand() {
         // TODO Auto-generated method stub
-        setDefaultCommand(new TankDriveWithJoystick());
+        setDefaultCommand(new TankDriveWithJoystickCommand());
     }
 
 }
