@@ -22,9 +22,6 @@ import java.io.PrintStream;
  */
 public class Robot extends IterativeRobot {
 
-    Command autonomousCommand;
-    SendableChooser chooser;
-
     final PrintStream originalOut = System.out;
 
     /**
@@ -38,10 +35,6 @@ public class Robot extends IterativeRobot {
         //Hackey...
         PrintStream interceptor = new InterceptorPS(originalOut);
         System.setOut(interceptor);
-
-//        chooser.addObject("My Auto", new MyAutoCommand());
-        //SmartDashboard.putData("Auto mode", chooser);
-
     }
 
     /**
@@ -69,21 +62,6 @@ public class Robot extends IterativeRobot {
      * or additional comparisons to the switch structure below with additional strings &amp; commands.
      */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-        switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
     }
 
     /**
@@ -94,12 +72,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
-        new EnableDriveCommand().start();
     }
 
     /**

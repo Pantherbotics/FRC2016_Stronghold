@@ -12,7 +12,7 @@ public class TankDriveWithJoystickCommand extends BaseCommand {
     @Override
     protected void initialize() {
         // TODO Auto-generated method stub
-
+        driveTrain.enableMotors();
     }
 
     @Override

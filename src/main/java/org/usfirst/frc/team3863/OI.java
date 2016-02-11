@@ -39,6 +39,10 @@ public class OI {
         leftJoyTrigger.whenPressed(new TransmissionCommand(true));
         rightJoyTrigger.whenPressed(new TransmissionCommand(false));
 
+        leftJoyButton3.whenPressed(new DirectDriveArmCommand(true));
+        leftJoyButton5.whenPressed(new DirectDriveArmCommand(false));
+
+        /*
         leftJoyButton3.whileHeld(new DirectDriveArmCommand(true));
         leftJoyButton3.whenReleased(new BaseCommand() {
 
@@ -95,6 +99,7 @@ public class OI {
 
             }
         });
+        */
         rightJoyButton2.whenPressed(new ExtendBigPistonCommand());
     }
 }
