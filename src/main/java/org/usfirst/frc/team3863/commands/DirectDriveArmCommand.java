@@ -23,20 +23,19 @@ public class DirectDriveArmCommand extends BaseCommand {
 
     @Override
     protected void execute() {
-        while (oi.leftJoyButton3.get() | oi.leftJoyButton5.get()) {
-            if (direction) {
-                if (arm.encVal() > 0.1) {
-                    arm.lower(0.5);
-                }
-            } else {
-                System.out.println(arm.encVal());
-                if (arm.encVal() < 1) {
-                    arm.raise(0.5);
-                }
+        if (direction) {
+            System.out.println("L: " + arm.encVal());
+            if (arm.encVal() > 0.1) {
+                arm.lower(0.5);
+            }
+        } else {
+            System.out.println("R: " + arm.encVal());
+            if (arm.encVal() < 1.4) {
+                arm.raise(0.5);
             }
         }
-        done = true;
-    }
+            done = true;
+}
 
     @Override
     protected boolean isFinished() {
@@ -45,6 +44,11 @@ public class DirectDriveArmCommand extends BaseCommand {
 
     @Override
     protected void end() {
+        System.err.println("END");
+//        arm.stopLift();
+    }
+
+    public void stopLift() {
         arm.stopLift();
     }
 

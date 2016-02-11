@@ -25,7 +25,7 @@ public class Arm extends Subsystem {
     }
 
     public double encVal() {
-        return magEncoder.getAverageVoltage();
+        return magEncoder.getVoltage();
     }
 
     public void lower(double v) {

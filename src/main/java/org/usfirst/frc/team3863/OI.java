@@ -2,6 +2,7 @@ package org.usfirst.frc.team3863;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team3863.commands.BaseCommand;
 import org.usfirst.frc.team3863.commands.DirectDriveArmCommand;
 import org.usfirst.frc.team3863.commands.ExtendBigPistonCommand;
 import org.usfirst.frc.team3863.commands.TransmissionCommand;
@@ -38,8 +39,62 @@ public class OI {
         leftJoyTrigger.whenPressed(new TransmissionCommand(true));
         rightJoyTrigger.whenPressed(new TransmissionCommand(false));
 
-        leftJoyButton3.whenPressed(new DirectDriveArmCommand(true));
-        leftJoyButton5.whenPressed(new DirectDriveArmCommand(false));
+        leftJoyButton3.whileHeld(new DirectDriveArmCommand(true));
+        leftJoyButton3.whenReleased(new BaseCommand() {
+
+            @Override
+            protected void initialize() {
+
+            }
+
+            @Override
+            protected void execute() {
+                arm.stopLift();
+            }
+
+            @Override
+            protected boolean isFinished() {
+                return true;
+            }
+
+            @Override
+            protected void end() {
+
+            }
+
+            @Override
+            protected void interrupted() {
+
+            }
+        });
+        leftJoyButton5.whileHeld(new DirectDriveArmCommand(false));
+        leftJoyButton5.whenReleased(new BaseCommand() {
+
+            @Override
+            protected void initialize() {
+
+            }
+
+            @Override
+            protected void execute() {
+                arm.stopLift();
+            }
+
+            @Override
+            protected boolean isFinished() {
+                return true;
+            }
+
+            @Override
+            protected void end() {
+
+            }
+
+            @Override
+            protected void interrupted() {
+
+            }
+        });
         rightJoyButton2.whenPressed(new ExtendBigPistonCommand());
     }
 }
