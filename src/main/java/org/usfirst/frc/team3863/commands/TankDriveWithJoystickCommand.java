@@ -18,7 +18,11 @@ public class TankDriveWithJoystickCommand extends BaseCommand {
     @Override
     protected void execute() {
         // TODO Auto-generated method stub
-        driveTrain.tankDrive(oi.leftJoystick, oi.rightJoystick);
+        if (!oi.leftJoyButton2.get()) {
+            driveTrain.tankDrive(oi.rightJoystick, oi.leftJoystick);
+        } else {
+            driveTrain.tankDrive(-oi.leftJoystick.getTwist(), oi.leftJoystick.getTwist());
+        }
     }
 
     @Override

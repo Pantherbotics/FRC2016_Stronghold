@@ -2,6 +2,8 @@ package org.usfirst.frc.team3863;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team3863.commands.DirectDriveArmCommand;
+import org.usfirst.frc.team3863.commands.ExtendBigPistonCommand;
 import org.usfirst.frc.team3863.commands.TransmissionCommand;
 
 /**
@@ -35,5 +37,9 @@ public class OI {
     public OI() {
         leftJoyTrigger.whenPressed(new TransmissionCommand(true));
         rightJoyTrigger.whenPressed(new TransmissionCommand(false));
+
+        leftJoyButton3.whenPressed(new DirectDriveArmCommand(true));
+        leftJoyButton5.whenPressed(new DirectDriveArmCommand(false));
+        rightJoyButton2.whenPressed(new ExtendBigPistonCommand());
     }
 }

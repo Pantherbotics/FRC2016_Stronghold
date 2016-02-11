@@ -13,6 +13,7 @@ public class ExtendBigPistonCommand extends BaseCommand {
 
     public ExtendBigPistonCommand(boolean retract) {
         this.retract = retract;
+        requires(arm);
     }
 
     @Override
@@ -22,7 +23,7 @@ public class ExtendBigPistonCommand extends BaseCommand {
 
     @Override
     protected void execute() {
-
+        arm.logEnc();
     }
 
     @Override

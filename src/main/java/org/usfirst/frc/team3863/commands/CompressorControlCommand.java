@@ -1,19 +1,20 @@
 package org.usfirst.frc.team3863.commands;
 
 /**
- * Created by robotics on 2/8/2016.
+ * Created by Robotics on 2/10/2016.
  */
-public class SpinCommand extends BaseCommand {
+public class CompressorControlCommand extends BaseCommand{
 
-    boolean direction;
+    boolean direction = false;
 
-    public SpinCommand(boolean direction) {
-        requires(driveTrain);
+    public CompressorControlCommand(boolean direction){
+        super("Compressor Control Command");
         this.direction = direction;
     }
 
     @Override
     protected void initialize() {
+
     }
 
     @Override
