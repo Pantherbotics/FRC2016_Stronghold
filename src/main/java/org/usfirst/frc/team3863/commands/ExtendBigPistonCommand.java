@@ -27,6 +27,7 @@ public class ExtendBigPistonCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
+        // TODO Write code that determines when arm finishes and return true;
         return false;
     }
 

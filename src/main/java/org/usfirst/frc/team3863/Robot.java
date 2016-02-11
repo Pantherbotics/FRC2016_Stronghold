@@ -22,11 +22,6 @@ import java.io.PrintStream;
  */
 public class Robot extends IterativeRobot {
 
-    /**
-     * This is a Subsystem
-     */
-    public static OI oi;
-
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -45,7 +40,7 @@ public class Robot extends IterativeRobot {
         System.setOut(interceptor);
 
 //        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+        //SmartDashboard.putData("Auto mode", chooser);
 
     }
 

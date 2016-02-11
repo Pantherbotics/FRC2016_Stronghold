@@ -4,9 +4,14 @@ package org.usfirst.frc.team3863.commands;
  * Created by robotics on 2/9/2016.
  */
 public class EnableDriveCommand extends BaseCommand {
+
+    public EnableDriveCommand() {
+        super("Enable Drive Command");
+        requires(driveTrain);
+    }
+
     @Override
     protected void initialize() {
-        requires(driveTrain);
     }
 
     @Override
@@ -16,7 +21,7 @@ public class EnableDriveCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override

@@ -21,6 +21,7 @@ public class TransmissionCommand extends BaseCommand {
 
     @Override
     protected void execute() {
+        System.err.println("WORKING");
         if (enable) {
             pneumatics.fireSolenoid(pneumatics.getDriveTrainSolenoid(), DoubleSolenoid.Value.kForward);
         } else {
@@ -30,7 +31,7 @@ public class TransmissionCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override
