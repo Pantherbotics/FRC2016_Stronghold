@@ -5,10 +5,12 @@ package org.usfirst.frc.team3863.commands;
  */
 public class SpinCommand extends BaseCommand {
 
+    public SpinCommand() {
+        requires(driveTrain);
+    }
 
     @Override
     protected void initialize() {
-        requires(driveTrain);
     }
 
     @Override
