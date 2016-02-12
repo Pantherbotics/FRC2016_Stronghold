@@ -6,13 +6,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team3863.RobotMap;
 
 /**
- * Created by robotics on 2/9/2016.
+ * <hr>
+ * <h1>Arm Subsystem</h1>
+ * <p>The subsystem that handles everything in regards to the arm (-pneumatics).  This includes the EndEffector.</p>
+ *
+ * @see edu.wpi.first.wpilibj.command.Subsystem
  */
 public class Arm extends Subsystem {
     public CANTalon armMotor = new CANTalon(RobotMap.ARM_MOTOR);
     public CANTalon endEffectorMoto = new CANTalon(RobotMap.END_EFFECTOR_MOTOR);
 
-    public AnalogInput magEncoder = new AnalogInput(0);
+    public AnalogInput magEncoder = new AnalogInput(RobotMap.ARM_ENCODER);
+
+    public Arm() {
+        super("Arm Subsystem");
+    }
 
     @Override
     protected void initDefaultCommand() {

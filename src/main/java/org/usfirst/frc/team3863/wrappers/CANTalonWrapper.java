@@ -3,17 +3,34 @@ package org.usfirst.frc.team3863.wrappers;
 import edu.wpi.first.wpilibj.CANTalon;
 
 /**
- * Created by Joshua on 1/30/2016.
+ * <hr>
+ * <h1>CANTalonWrapper</h1>
+ * <p>A class that links, via software, two motors together.</p>
  */
 public class CANTalonWrapper {
 
+    /**
+     * <hr>
+     * <h1>Inner CANTalon reference</h1>
+     * <p>These motors should only be accessable from with the CANTalonWrapper class.</p>
+     */
     private CANTalon m0, m1;
 
+    /**
+     * <hr>
+     * <h1>CANTalonWrapper Constructor</h1>
+     * <p>Ports for each motor.</p>
+     */
     public CANTalonWrapper(int i0, int i1) {
         m0 = new CANTalon(i0);
         m1 = new CANTalon(i1);
     }
 
+    /**
+     * <hr>
+     * <h1>CANTalonWrapper Constructor</h1>
+     * <p>Ports for each motor, and a boolean for if they should be inverted by default.</p>
+     */
     public CANTalonWrapper(int i0, int i1, boolean invert) {
         m0 = new CANTalon(i0);
         m1 = new CANTalon(i1);

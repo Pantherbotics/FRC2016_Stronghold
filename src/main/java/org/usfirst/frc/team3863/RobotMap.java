@@ -1,10 +1,9 @@
 package org.usfirst.frc.team3863;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
+ * <hr>
+ * <h1>Robot Map</h1>
+ * <p>Exactly as it sounds: a map of all I/O and other ports</p>
  */
 public class RobotMap {
 

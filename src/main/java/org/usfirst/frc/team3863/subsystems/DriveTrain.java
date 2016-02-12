@@ -7,15 +7,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3863.wrappers.CANTalonWrapper;
 
+/**
+ * <hr>
+ * <h1>Drive Train Subsystem</h1>
+ * <p>The subsystem that handles any and all code related to interfacing with the drive train.</p>
+ *
+ * @see edu.wpi.first.wpilibj.command.Subsystem
+ */
 public class DriveTrain extends Subsystem {
 
-    //    private final AnalogGyro gyro;
     public CANTalonWrapper leftMotors = new CANTalonWrapper(RobotMap.LEFT_DRIVE_MOTOR_0, RobotMap.LEFT_DRIVE_MOTOR_1);
     public CANTalonWrapper rightMotors = new CANTalonWrapper(RobotMap.RIGHT_DRIVE_MOTOR_0, RobotMap.RIGHT_DRIVE_MOTOR_1, true);
 
 
     public DriveTrain() {
-        super("Drive Train");
+        super("Drive Train Subsystem");
     }
 
     public void log() {
@@ -57,7 +63,6 @@ public class DriveTrain extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        // TODO Auto-generated method stub
         setDefaultCommand(new TankDriveWithJoystickCommand());
     }
 

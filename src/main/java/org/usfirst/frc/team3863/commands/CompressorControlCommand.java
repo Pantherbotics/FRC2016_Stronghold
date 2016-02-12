@@ -1,14 +1,16 @@
 package org.usfirst.frc.team3863.commands;
 
 /**
- * Created by Robotics on 2/10/2016.
+ * Created by Joshua Freedman on 2/10/2016.
+ * Project: 2016Robot
  */
-public class CompressorControlCommand extends BaseCommand{
+public class CompressorControlCommand extends BaseCommand {
 
     boolean direction = false;
 
-    public CompressorControlCommand(boolean direction){
+    public CompressorControlCommand(boolean direction) {
         super("Compressor Control Command");
+        requires(pneumatics);
         this.direction = direction;
     }
 
@@ -19,12 +21,16 @@ public class CompressorControlCommand extends BaseCommand{
 
     @Override
     protected void execute() {
-
+        if (direction) {
+            pneumatics.startCompressor();
+        } else {
+            pneumatics.stopCompressor();
+        }
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override

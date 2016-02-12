@@ -8,7 +8,8 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 /**
- * Created by Wolf on 2/8/2016.
+ * Created by Joshua Freedman on 2/8/2016.
+ * Project: 2016Robot
  */
 public class InterceptorPS extends PrintStream {
 

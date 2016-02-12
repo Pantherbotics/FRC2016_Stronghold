@@ -14,19 +14,24 @@ import org.usfirst.frc.team3863.commands.EnableDriveCommand;
 import java.io.PrintStream;
 
 /**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
+ * <hr>
+ * <h1>Le Robot</h1>
+ * <p>A class that extends IterativeRobot.... Um yeah...</p>
  */
 public class Robot extends IterativeRobot {
 
+    /**
+     * <hr>
+     * <h1>Original System Out Stream</h1>
+     * <p>Saving a reference to the original System.out in case we ever need to restore from it in the code.</p>
+     */
     final PrintStream originalOut = System.out;
 
     /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
+     * <hr>
+     * <h1>Robot Initialization</h1>
+     * <p>Run when the robot is first started up.</p>
+     * <p>Any and all initialization code should be run here.</p>
      */
     public void robotInit() {
 
@@ -37,11 +42,6 @@ public class Robot extends IterativeRobot {
         System.setOut(interceptor);
     }
 
-    /**
-     * This function is called once each time the robot enters Disabled mode.
-     * You can use it to reset any subsystem information you want to clear when
-     * the robot is disabled.
-     */
     public void disabledInit() {
         SmartDashboard.putString("message", "I'm pretty tired... I think I'll go home now.");
         //Forest Gump:
@@ -52,21 +52,9 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
     }
 
-    /**
-     * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
-     * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW
-     * Dashboard, remove all of the chooser code and uncomment the getString code to get the auto name from the text box
-     * below the Gyro
-     * <br>
-     * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
-     * or additional comparisons to the switch structure below with additional strings &amp; commands.
-     */
     public void autonomousInit() {
     }
 
-    /**
-     * This function is called periodically during autonomous
-     */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
@@ -74,17 +62,7 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
     }
 
-    /**
-     * This function is called periodically during operator control
-     */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-    }
-
-    /**
-     * This function is called periodically during test mode
-     */
-    public void testPeriodic() {
-        LiveWindow.run();
     }
 }

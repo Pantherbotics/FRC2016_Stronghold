@@ -1,7 +1,8 @@
 package org.usfirst.frc.team3863.commands;
 
 /**
- * Created by Robotics on 2/10/2016.
+ * Created by Joshua Freedman on 2/10/2016.
+ * Project: 2016Robot
  */
 public class DirectDriveArmCommand extends BaseCommand {
 
@@ -35,7 +36,7 @@ public class DirectDriveArmCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return !(oi.leftJoyButton3.get() | oi.leftJoyButton5.get());
+        return !(oi.btnArmLower.get() | oi.btnArmRaise.get());
     }
 
     @Override
