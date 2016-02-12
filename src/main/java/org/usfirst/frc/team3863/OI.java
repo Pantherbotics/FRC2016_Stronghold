@@ -69,6 +69,9 @@ public class OI {
         btnArmLower.whenPressed(new DirectDriveArmCommand(true));
         btnArmRaise.whenPressed(new DirectDriveArmCommand(false));
 
+        leftJoyButton7.whenPressed(new ExtendBigPistonCommand(true));
+        leftJoyButton8.whenPressed(new ExtendBigPistonCommand(false));
+
         leftJoyButton11.whenPressed(new CompressorControlCommand(true));
         leftJoyButton12.whenPressed(new CompressorControlCommand(false));
     }

@@ -10,6 +10,6 @@ public class ExtendAndRaiseCommand extends CommandGroup {
     public ExtendAndRaiseCommand() {
         addSequential(new ElevateArmToPosCommand(/*1.5*/));
         addParallel(new ElevateArmToPosCommand(/*rest of way*/));
-        addSequential(new ExtendBigPistonCommand());
+        addSequential(new ExtendBigPistonCommand(true));
     }
 }

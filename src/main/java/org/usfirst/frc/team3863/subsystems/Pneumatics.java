@@ -113,7 +113,7 @@ public class Pneumatics extends Subsystem {
     /**
      * <hr>
      * <h1>Get End Effector Solenoid</h1>
-     * <p>Arg! ANOTHER *#$@$@& method that instead returns the DoubleSolenoid that supposedly causes the EndEffector to fire!</p>
+     * <p>Arg! ANOTHER *#$@$@ method that instead returns the DoubleSolenoid that supposedly causes the EndEffector to fire!</p>
      *
      * @see org.usfirst.frc.team3863.subsystems.Arm
      */
