@@ -36,7 +36,8 @@ public class DirectDriveArmCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return !(oi.btnArmLower.get() | oi.btnArmRaise.get());
+        System.out.println(oi.btnArmLower.get() || oi.btnArmRaise.get());
+        return !(oi.btnArmLower.get() || oi.btnArmRaise.get());
     }
 
     @Override
