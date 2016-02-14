@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3863.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import org.usfirst.frc.team3863.RobotMap;
 import org.usfirst.frc.team3863.commands.TankDriveWithJoystickCommand;
 import edu.wpi.first.wpilibj.Joystick;
@@ -16,8 +17,17 @@ import org.usfirst.frc.team3863.wrappers.CANTalonWrapper;
  */
 public class DriveTrain extends Subsystem {
 
-    public CANTalonWrapper leftMotors = new CANTalonWrapper(RobotMap.LEFT_DRIVE_MOTOR_0, RobotMap.LEFT_DRIVE_MOTOR_1);
-    public CANTalonWrapper rightMotors = new CANTalonWrapper(RobotMap.RIGHT_DRIVE_MOTOR_0, RobotMap.RIGHT_DRIVE_MOTOR_1, true);
+    CANTalonWrapper leftMotors = new CANTalonWrapper(RobotMap.LEFT_DRIVE_MOTOR_0, RobotMap.LEFT_DRIVE_MOTOR_1);
+    CANTalonWrapper rightMotors = new CANTalonWrapper(RobotMap.RIGHT_DRIVE_MOTOR_0, RobotMap.RIGHT_DRIVE_MOTOR_1, true);
+
+    /**
+     * <hr>
+     * <h1>Drive Train Solenoid</h1>
+     * <p>The DoubleSolenoid that handles the transmission on the robot.</p>
+     *
+     * @see org.usfirst.frc.team3863.subsystems.DriveTrain
+     */
+    DoubleSolenoid driveTrainSolenoid = new DoubleSolenoid(RobotMap.DRIVE_TRAIN_SOLENOID_0, RobotMap.DRIVE_TRAIN_SOLENOID_1);
 
 
     public DriveTrain() {
@@ -59,6 +69,17 @@ public class DriveTrain extends Subsystem {
         leftMotors.enableControl();
         rightMotors.enable();
         rightMotors.enableControl();
+    }
+
+    /**
+     * <hr>
+     * <h1>Get Drive Train Solenoid</h1>
+     * <p>Eh... Returns the DoubleSolenoid that handles the transmission.</p>
+     *
+     * @see org.usfirst.frc.team3863.subsystems.DriveTrain
+     */
+    public DoubleSolenoid getDriveTrainSolenoid() {
+        return driveTrainSolenoid;
     }
 
     @Override

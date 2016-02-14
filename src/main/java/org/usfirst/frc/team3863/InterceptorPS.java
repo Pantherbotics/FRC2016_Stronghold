@@ -1,9 +1,5 @@
 package org.usfirst.frc.team3863;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import java.io.OutputStream;
 import java.io.PrintStream;
 

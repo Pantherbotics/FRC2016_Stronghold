@@ -2,21 +2,32 @@ package org.usfirst.frc.team3863.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team3863.RobotMap;
 
 /**
  * <hr>
  * <h1>Arm Subsystem</h1>
- * <p>The subsystem that handles everything in regards to the arm (-pneumatics).  This includes the EndEffector.</p>
+ * <p>The subsystem that handles everything in regards to the arm (-utils).  This includes the EndEffector.</p>
  *
  * @see edu.wpi.first.wpilibj.command.Subsystem
  */
 public class Arm extends Subsystem {
-    public CANTalon armMotor = new CANTalon(RobotMap.ARM_MOTOR);
-    public CANTalon endEffectorMoto = new CANTalon(RobotMap.END_EFFECTOR_MOTOR);
 
-    public AnalogInput magEncoder = new AnalogInput(RobotMap.ARM_ENCODER);
+    CANTalon armMotor = new CANTalon(RobotMap.ARM_MOTOR);
+
+    AnalogInput magEncoder = new AnalogInput(RobotMap.ARM_ENCODER);
+
+    /**
+     * <hr>
+     * <h1>Arm Solenoid</h1>
+     * <p>The DoubleSolenoid that handles extending the Arm.</p>
+     *
+     * @see org.usfirst.frc.team3863.subsystems.Arm
+     */
+    DoubleSolenoid armSolenoid = new DoubleSolenoid(RobotMap.ARM_SOLENOID_0, RobotMap.ARM_SOLENOID_1);
+
 
     public Arm() {
         super("Arm Subsystem");
@@ -27,9 +38,12 @@ public class Arm extends Subsystem {
 
     }
 
-    public void logEnc() {
-        // MAX 1.4 v
-        // MIN 0.1
+    public CANTalon getArmMotor() {
+        return armMotor;
+    }
+
+    public AnalogInput getMagEncoder() {
+        return magEncoder;
     }
 
     public double encVal() {
@@ -47,4 +61,16 @@ public class Arm extends Subsystem {
     public void stopLift() {
         armMotor.set(0);
     }
+
+    /**
+     * <hr>
+     * <h1>Get Arm Solenoid</h1>
+     * <p>Meh. Returns the DoubleSolenoid that is responsible for the Arm extending...</p>
+     *
+     * @see org.usfirst.frc.team3863.subsystems.Arm
+     */
+    public DoubleSolenoid getArmSolenoid() {
+        return armSolenoid;
+    }
+
 }

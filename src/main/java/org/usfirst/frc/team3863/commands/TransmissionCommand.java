@@ -1,16 +1,18 @@
 package org.usfirst.frc.team3863.commands;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import org.usfirst.frc.team3863.Utils;
 
 /**
- * Created by robotics on 2/9/2016.
+ * Originally Created by Joshua Freedman on 2/9/2016.
+ * Project: 2016Robot
  */
 public class TransmissionCommand extends BaseCommand {
 
     private boolean enable = false;
 
     public TransmissionCommand(boolean enable) {
-        requires(pneumatics);
+        requires(driveTrain);
         this.enable = enable;
     }
 
@@ -23,9 +25,9 @@ public class TransmissionCommand extends BaseCommand {
     protected void execute() {
         System.err.println("WORKING");
         if (enable) {
-            pneumatics.fireSolenoid(pneumatics.getDriveTrainSolenoid(), DoubleSolenoid.Value.kForward);
+            Utils.fireSolenoid(driveTrain.getDriveTrainSolenoid(), DoubleSolenoid.Value.kForward);
         } else {
-            pneumatics.fireSolenoid(pneumatics.getDriveTrainSolenoid(), DoubleSolenoid.Value.kReverse);
+            Utils.fireSolenoid(driveTrain.getDriveTrainSolenoid(), DoubleSolenoid.Value.kReverse);
         }
     }
 

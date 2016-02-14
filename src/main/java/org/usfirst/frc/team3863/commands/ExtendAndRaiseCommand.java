@@ -3,7 +3,8 @@ package org.usfirst.frc.team3863.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * Created by robotics on 2/9/2016.
+ * Originally Created by Joshua Freedman on 2/9/2016.
+ * Project: 2016Robot
  */
 public class ExtendAndRaiseCommand extends CommandGroup {
 

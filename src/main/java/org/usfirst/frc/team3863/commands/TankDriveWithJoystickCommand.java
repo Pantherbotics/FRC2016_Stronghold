@@ -1,5 +1,9 @@
 package org.usfirst.frc.team3863.commands;
 
+/**
+ * Originally Created by Joshua Freedman on 2/9/2016.
+ * Project: 2016Robot
+ */
 public class TankDriveWithJoystickCommand extends BaseCommand {
 
     public TankDriveWithJoystickCommand() {

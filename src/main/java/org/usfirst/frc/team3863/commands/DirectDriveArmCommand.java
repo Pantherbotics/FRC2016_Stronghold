@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3863.commands;
 
 /**
- * Created by Joshua Freedman on 2/10/2016.
+ * Originally Created by Joshua Freedman on 2/9/2016.
  * Project: 2016Robot
  */
 public class DirectDriveArmCommand extends BaseCommand {
@@ -16,8 +16,8 @@ public class DirectDriveArmCommand extends BaseCommand {
 
     @Override
     protected void initialize() {
-        arm.armMotor.enable();
-        arm.armMotor.enableControl();
+        arm.getArmMotor().enable();
+        arm.getArmMotor().enableControl();
     }
 
     @Override
@@ -36,7 +36,6 @@ public class DirectDriveArmCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        System.out.println(oi.btnArmLower.get() || oi.btnArmRaise.get());
         return !(oi.btnArmLower.get() || oi.btnArmRaise.get());
     }
 
