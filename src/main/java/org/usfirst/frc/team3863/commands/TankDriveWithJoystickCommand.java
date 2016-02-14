@@ -1,7 +1,5 @@
 package org.usfirst.frc.team3863.commands;
 
-import org.usfirst.frc.team3863.Robot;
-
 public class TankDriveWithJoystickCommand extends BaseCommand {
 
     public TankDriveWithJoystickCommand() {
@@ -18,8 +16,8 @@ public class TankDriveWithJoystickCommand extends BaseCommand {
     @Override
     protected void execute() {
         // TODO Auto-generated method stub
-        if (!oi.leftJoyButton2.get()) {
-            driveTrain.tankDrive(oi.rightJoystick, oi.leftJoystick);
+        if (!oi.rightJoyButton2.get()) {
+            driveTrain.tankDrive(oi.leftJoystick, oi.rightJoystick);
         } else {
             driveTrain.tankDrive(-oi.leftJoystick.getTwist(), oi.leftJoystick.getTwist());
         }
