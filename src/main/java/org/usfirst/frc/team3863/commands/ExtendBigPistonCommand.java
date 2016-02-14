@@ -1,9 +1,11 @@
 package org.usfirst.frc.team3863.commands;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import org.usfirst.frc.team3863.Utils;
 
 /**
- * Created by robotics on 2/9/2016.
+ * Originally Created by Joshua Freedman on 2/9/2016.
+ * Project: 2016Robot
  */
 public class ExtendBigPistonCommand extends BaseCommand {
 
@@ -11,7 +13,7 @@ public class ExtendBigPistonCommand extends BaseCommand {
 
     public ExtendBigPistonCommand(boolean direction) {
         this.direction = direction;
-        requires(pneumatics);
+        requires(arm);
     }
 
     @Override
@@ -22,9 +24,9 @@ public class ExtendBigPistonCommand extends BaseCommand {
     @Override
     protected void execute() {
         if (direction) {
-            pneumatics.fireSolenoid(pneumatics.getArmSolenoid(), DoubleSolenoid.Value.kForward);
+            Utils.fireSolenoid(arm.getArmSolenoid(), DoubleSolenoid.Value.kForward);
         } else {
-            pneumatics.fireSolenoid(pneumatics.getArmSolenoid(), DoubleSolenoid.Value.kReverse);
+            Utils.fireSolenoid(arm.getArmSolenoid(), DoubleSolenoid.Value.kReverse);
         }
     }
 

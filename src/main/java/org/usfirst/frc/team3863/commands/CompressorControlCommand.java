@@ -1,7 +1,9 @@
 package org.usfirst.frc.team3863.commands;
 
+import org.usfirst.frc.team3863.Utils;
+
 /**
- * Created by Joshua Freedman on 2/10/2016.
+ * Originally Created by Joshua Freedman on 2/9/2016.
  * Project: 2016Robot
  */
 public class CompressorControlCommand extends BaseCommand {
@@ -10,7 +12,6 @@ public class CompressorControlCommand extends BaseCommand {
 
     public CompressorControlCommand(boolean direction) {
         super("Compressor Control Command");
-        requires(pneumatics);
         this.direction = direction;
     }
 
@@ -22,9 +23,9 @@ public class CompressorControlCommand extends BaseCommand {
     @Override
     protected void execute() {
         if (direction) {
-            pneumatics.startCompressor();
+            Utils.startCompressor();
         } else {
-            pneumatics.stopCompressor();
+            Utils.stopCompressor();
         }
     }
 

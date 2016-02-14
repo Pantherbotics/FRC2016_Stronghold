@@ -1,7 +1,8 @@
 package org.usfirst.frc.team3863.commands;
 
 /**
- * Created by robotics on 2/9/2016.
+ * Originally Created by Joshua Freedman on 2/9/2016.
+ * Project: 2016Robot
  */
 public class ElevateArmToPosCommand extends BaseCommand {
 

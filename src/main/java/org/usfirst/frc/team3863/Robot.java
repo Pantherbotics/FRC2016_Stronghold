@@ -34,8 +34,9 @@ public class Robot extends IterativeRobot {
         BaseCommand.init();
 
         //Hackey...
-        PrintStream interceptor = new InterceptorPS(originalOut);
-        System.setOut(interceptor);
+        //TODO Actually use this...
+//        PrintStream interceptor = new InterceptorPS(originalOut);
+//        System.setOut(interceptor);
     }
 
     public void disabledInit() {
