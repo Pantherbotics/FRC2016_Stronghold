@@ -3,6 +3,7 @@ package org.usfirst.frc.team3863;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team3863.commands.*;
+import org.usfirst.frc.team3863.commands.groups.ShootGroup;
 
 /**
  * <hr>
@@ -74,5 +75,7 @@ public class OI {
 
         rightJoyButton11.whenPressed(new CompressorControlCommand(true));
         rightJoyButton12.whenPressed(new CompressorControlCommand(false));
+
+        leftJoyButton10.whenPressed(new ShootGroup());
     }
 }

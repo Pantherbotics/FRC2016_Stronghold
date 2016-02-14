@@ -14,7 +14,6 @@ import org.usfirst.frc.team3863.RobotMap;
  */
 public class Arm extends Subsystem {
     public CANTalon armMotor = new CANTalon(RobotMap.ARM_MOTOR);
-    public CANTalon endEffectorMoto = new CANTalon(RobotMap.END_EFFECTOR_MOTOR);
 
     public AnalogInput magEncoder = new AnalogInput(RobotMap.ARM_ENCODER);
 

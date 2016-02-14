@@ -1,4 +1,6 @@
-package org.usfirst.frc.team3863.commands;
+package org.usfirst.frc.team3863.commands.drive;
+
+import org.usfirst.frc.team3863.commands.BaseCommand;
 
 /**
  * Created by robotics on 2/9/2016.

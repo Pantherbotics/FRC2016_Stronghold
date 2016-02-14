@@ -39,15 +39,6 @@ public class Pneumatics extends Subsystem {
      */
     DoubleSolenoid armSolenoid = new DoubleSolenoid(RobotMap.ARM_SOLENOID_0, RobotMap.ARM_SOLENOID_1);
 
-    /**
-     * <hr>
-     * <h1>End Effector Solenoid</h1>
-     * <p>The DoubleSolenoid that handles the firing of the launching mechanism.</p>
-     *
-     * @see org.usfirst.frc.team3863.subsystems.Arm
-     */
-    DoubleSolenoid endEffectorSolenoid = new DoubleSolenoid(RobotMap.END_EFFECTOR_SOLENOID_0, RobotMap.END_EFFECTOR_SOLENOID_1);
-
 
     public Pneumatics() {
         super("Pneumatics Subsystem");
@@ -117,9 +108,10 @@ public class Pneumatics extends Subsystem {
      *
      * @see org.usfirst.frc.team3863.subsystems.Arm
      */
+    /*
     public DoubleSolenoid getEndEffectorSolenoid() {
         return endEffectorSolenoid;
-    }
+    }*/
 
     /**
      * <hr>
