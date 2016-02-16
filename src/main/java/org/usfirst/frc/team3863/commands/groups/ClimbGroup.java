@@ -17,8 +17,8 @@ public class ClimbGroup extends CommandGroup{
         addSequential(new WaitCommand(3));
         addSequential(new ElevateArmToPosCommand(1.8));
         addSequential(new ExtendBigPistonCommand(true));
-        addSequential(new WaitCommand(10));
-        addSequential(new ElevateArmToPosCommand(2.37));
+        addSequential(new WaitCommand(7));
+        addSequential(new ElevateArmToPosCommand(2.575));
         addSequential(new WaitCommand(3));
         addSequential(new ExtendBigPistonCommand(false));
 
