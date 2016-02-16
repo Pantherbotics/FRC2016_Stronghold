@@ -9,16 +9,18 @@ import org.usfirst.frc.team3863.commands.BaseCommand;
 public class TimedIntakeCommand extends BaseCommand {
 
     public final boolean direction;
+    public final double power;
 
-    public TimedIntakeCommand(double timeout, boolean reversed) {
+    public TimedIntakeCommand(double timeout, double power, boolean reversed) {
         super(timeout);
         requires(intake);
+        this.power = Math.abs(power);
         this.direction = reversed;
     }
 
     @Override
     protected void initialize() {
-        intake.expell(direction ? 1 : -1);
+        intake.expell(direction ? power : -power);
     }
 
     @Override

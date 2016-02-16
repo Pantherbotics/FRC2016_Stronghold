@@ -20,11 +20,11 @@ public class Intake extends Subsystem {
     }
 
     public void intake(double v) {
-        pickupMotor.set(-v);
+        pickupMotor.set(v);
     }
 
     public void expell(double v) {
-        pickupMotor.set(v);
+        pickupMotor.set(-v);
     }
 
     public void stop() {

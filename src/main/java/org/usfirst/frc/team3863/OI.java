@@ -8,6 +8,8 @@ import org.usfirst.frc.team3863.commands.arm.ElevateArmToPosCommand;
 import org.usfirst.frc.team3863.commands.arm.ExtendBigPistonCommand;
 import org.usfirst.frc.team3863.commands.drive.TransmissionCommand;
 import org.usfirst.frc.team3863.commands.endeffector.IntakeCommand;
+import org.usfirst.frc.team3863.commands.endeffector.TimedIntakeCommand;
+import org.usfirst.frc.team3863.commands.groups.CenterGroup;
 import org.usfirst.frc.team3863.commands.groups.ClimbGroup;
 import org.usfirst.frc.team3863.commands.groups.ShootGroup;
 
@@ -76,7 +78,6 @@ public class OI {
         btnArmLower.whenPressed(new DirectDriveArmCommand(true));
         btnArmRaise.whenPressed(new DirectDriveArmCommand(false));
 
-        intakeButton.whenPressed(new IntakeCommand());
 
         rightJoyButton7.whenPressed(new ExtendBigPistonCommand(true));
         rightJoyButton8.whenPressed(new ExtendBigPistonCommand(false));
@@ -85,7 +86,11 @@ public class OI {
         rightJoyButton12.whenPressed(new CompressorControlCommand(false));
 
         leftJoyButton9.whenPressed(new DebugCommand());
-        leftJoyButton10.whenPressed(new ShootGroup());
+        leftJoyButton4.whenPressed(new ShootGroup());
         leftJoyButton11.whenPressed(new ClimbGroup());
+
+        intakeButton.whenPressed(new IntakeCommand(0.5));
+        leftJoyButton5.whileHeld(new CenterGroup());
+        leftJoyButton3.whenPressed(new TimedIntakeCommand(0.5, 0.3, true));
     }
 }

@@ -8,9 +8,17 @@ import org.usfirst.frc.team3863.commands.BaseCommand;
  */
 public class IntakeCommand extends BaseCommand {
 
+    public final double power;
+
+    public IntakeCommand(double power) {
+        super("Intake Command");
+        requires(intake);
+        this.power = power;
+    }
+
     @Override
     protected void initialize() {
-        intake.intake(0.3);
+        intake.intake(power);
     }
 
     @Override
@@ -20,7 +28,7 @@ public class IntakeCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return !oi.intakeButton.get() && intake.detectorValue() < 4.75;
+        return !oi.intakeButton.get() && intake.detectorValue() < 4.5;
     }
 
     @Override

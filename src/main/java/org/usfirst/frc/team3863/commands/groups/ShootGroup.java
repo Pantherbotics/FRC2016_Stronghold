@@ -12,8 +12,10 @@ public class ShootGroup extends CommandGroup {
 
     public ShootGroup() {
         super("Shoot Group");
+        addSequential(new TimedIntakeCommand(0.25, 0.1, true));
+        addSequential(new TimedIntakeCommand(0.25, 0.1, false));
         addParallel(new ShootCommand(0.15));
-        addSequential(new TimedIntakeCommand(0.1, true));
-        addSequential(new TimedIntakeCommand(0.2, false));
+        addSequential(new TimedIntakeCommand(0.1, 1, true));
+        addSequential(new TimedIntakeCommand(0.2, 1, false));
     }
 }
