@@ -20,6 +20,7 @@ public abstract class BaseCommand extends Command {
 
     public static void init() {
         oi = new OI();
+
     }
 
     public BaseCommand() {

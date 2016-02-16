@@ -21,7 +21,7 @@ public class TankDriveWithJoystickCommand extends BaseCommand {
         if (!oi.rightJoyButton2.get()) {
             driveTrain.tankDrive(oi.leftJoystick, oi.rightJoystick);
         } else {
-            driveTrain.tankDrive(-oi.leftJoystick.getTwist(), oi.leftJoystick.getTwist());
+            driveTrain.tankDrive(-oi.rightJoystick.getTwist(), oi.rightJoystick.getTwist());
         }
     }
 

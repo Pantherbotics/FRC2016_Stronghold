@@ -1,13 +1,14 @@
 package org.usfirst.frc.team3863.commands;
 
 /**
- * Created by robotics on 2/9/2016.
+ * Created by Fox on 2/13/2016.
+ * Project: 2016Robot
  */
-public class ElevateArmToPosCommand extends BaseCommand {
+public class DebugCommand extends BaseCommand {
 
     @Override
     protected void initialize() {
-
+        System.out.println("DEBUG: " + intake.detectorValue());
     }
 
     @Override
@@ -17,7 +18,7 @@ public class ElevateArmToPosCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override
@@ -27,6 +28,6 @@ public class ElevateArmToPosCommand extends BaseCommand {
 
     @Override
     protected void interrupted() {
-
+        end();
     }
 }

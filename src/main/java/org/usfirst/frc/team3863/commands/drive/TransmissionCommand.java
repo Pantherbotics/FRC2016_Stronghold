@@ -1,6 +1,7 @@
-package org.usfirst.frc.team3863.commands;
+package org.usfirst.frc.team3863.commands.drive;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import org.usfirst.frc.team3863.commands.BaseCommand;
 
 /**
  * Created by robotics on 2/9/2016.
@@ -21,7 +22,6 @@ public class TransmissionCommand extends BaseCommand {
 
     @Override
     protected void execute() {
-        System.err.println("WORKING");
         if (enable) {
             pneumatics.fireSolenoid(pneumatics.getDriveTrainSolenoid(), DoubleSolenoid.Value.kForward);
         } else {

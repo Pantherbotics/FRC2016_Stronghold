@@ -1,4 +1,6 @@
-package org.usfirst.frc.team3863.commands;
+package org.usfirst.frc.team3863.commands.arm;
+
+import org.usfirst.frc.team3863.commands.BaseCommand;
 
 /**
  * Created by Joshua Freedman on 2/10/2016.
@@ -6,7 +8,6 @@ package org.usfirst.frc.team3863.commands;
  */
 public class DirectDriveArmCommand extends BaseCommand {
 
-    boolean done = false;
     boolean direction = false;
 
     public DirectDriveArmCommand(boolean direction) {
@@ -23,29 +24,23 @@ public class DirectDriveArmCommand extends BaseCommand {
     @Override
     protected void execute() {
         if (direction) {
-            if (arm.encVal() > 0.1) {
+            if ( arm.encVal() > 1.0) {
                 arm.lower(0.5);
-            }
+            } else arm.stopLift();
         } else {
-            if (arm.encVal() < 1.4) {
+            if (arm.encVal() < 2.35) {
                 arm.raise(0.5);
-            }
+            } else arm.stopLift();
         }
-        done = true;
     }
 
     @Override
     protected boolean isFinished() {
-        System.out.println(oi.btnArmLower.get() || oi.btnArmRaise.get());
         return !(oi.btnArmLower.get() || oi.btnArmRaise.get());
     }
 
     @Override
     protected void end() {
-        arm.stopLift();
-    }
-
-    public void stopLift() {
         arm.stopLift();
     }
 

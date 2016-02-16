@@ -40,4 +40,6 @@ public class RobotMap {
     public static final int ARM_SOLENOID_1 = 3;
     public static final int END_EFFECTOR_SOLENOID_0 = 4;
     public static final int END_EFFECTOR_SOLENOID_1 = 5;
+
+    public static final int BALL_DETECTOR = 1;
 }

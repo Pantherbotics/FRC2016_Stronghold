@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3863.commands.BaseCommand;
+import org.usfirst.frc.team3863.commands.CompressorControlCommand;
 
 import java.io.PrintStream;
 
@@ -49,6 +50,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        new CompressorControlCommand(true).start();
     }
 
     public void autonomousPeriodic() {
@@ -56,6 +58,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+        new CompressorControlCommand(true).start();
     }
 
     public void teleopPeriodic() {

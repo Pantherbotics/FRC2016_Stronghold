@@ -1,4 +1,6 @@
-package org.usfirst.frc.team3863.commands;
+package org.usfirst.frc.team3863.commands.endeffector;
+
+import org.usfirst.frc.team3863.commands.BaseCommand;
 
 /**
  * Created by Fox on 2/13/2016.
@@ -9,10 +11,11 @@ public class ShootCommand extends BaseCommand {
     public ShootCommand(double timeout) {
         super("Shoot Command", timeout);
         requires(shooter);
+        requires(arm);
     }
 
     public ShootCommand() {
-        this(0.5);
+        this(0.15);
     }
 
     @Override

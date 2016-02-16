@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3863.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team3863.RobotMap;
@@ -11,6 +12,7 @@ import org.usfirst.frc.team3863.RobotMap;
 public class Intake extends Subsystem {
 
     public CANTalon pickupMotor = new CANTalon(RobotMap.END_EFFECTOR_MOTOR);
+    public AnalogInput ballDetector = new AnalogInput(RobotMap.BALL_DETECTOR);
 
     @Override
     protected void initDefaultCommand() {
@@ -27,5 +29,9 @@ public class Intake extends Subsystem {
 
     public void stop() {
         pickupMotor.set(0);
+    }
+
+    public double detectorValue(){
+        return ballDetector.getVoltage();
     }
 }
