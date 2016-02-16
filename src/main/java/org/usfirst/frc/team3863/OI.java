@@ -11,6 +11,7 @@ import org.usfirst.frc.team3863.commands.endeffector.IntakeCommand;
 import org.usfirst.frc.team3863.commands.endeffector.TimedIntakeCommand;
 import org.usfirst.frc.team3863.commands.groups.CenterGroup;
 import org.usfirst.frc.team3863.commands.groups.ClimbGroup;
+import org.usfirst.frc.team3863.commands.groups.PrepareShootGroup;
 import org.usfirst.frc.team3863.commands.groups.ShootGroup;
 
 /**
@@ -87,6 +88,7 @@ public class OI {
 
         leftJoyButton9.whenPressed(new DebugCommand());
         leftJoyButton4.whenPressed(new ShootGroup());
+        leftJoyButton10.whenPressed(new PrepareShootGroup());
         leftJoyButton11.whenPressed(new ClimbGroup());
 
         intakeButton.whenPressed(new IntakeCommand(0.5));
