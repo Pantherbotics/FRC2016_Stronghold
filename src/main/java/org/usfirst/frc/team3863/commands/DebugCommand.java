@@ -8,7 +8,7 @@ public class DebugCommand extends BaseCommand {
 
     @Override
     protected void initialize() {
-        System.out.println("DEBUG: " + intake.detectorValue());
+        System.out.println("ARM: " + arm.encVal() + "   BALL: " + intake.detectorValue() );
     }
 
     @Override

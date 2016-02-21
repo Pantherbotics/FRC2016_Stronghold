@@ -51,6 +51,9 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         new CompressorControlCommand(true).start();
+        BaseCommand.arm.armMotor.enable();
+        BaseCommand.driveTrain.enableMotors();
+        BaseCommand.intake.pickupMotor.enable();
     }
 
     public void autonomousPeriodic() {
@@ -59,6 +62,9 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
         new CompressorControlCommand(true).start();
+        BaseCommand.arm.armMotor.enable();
+        BaseCommand.driveTrain.enableMotors();
+        BaseCommand.intake.pickupMotor.enable();
     }
 
     public void teleopPeriodic() {

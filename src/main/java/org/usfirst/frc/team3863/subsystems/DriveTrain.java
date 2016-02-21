@@ -56,9 +56,7 @@ public class DriveTrain extends Subsystem {
 
     public void enableMotors() {
         leftMotors.enable();
-        leftMotors.enableControl();
         rightMotors.enable();
-        rightMotors.enableControl();
     }
 
     @Override

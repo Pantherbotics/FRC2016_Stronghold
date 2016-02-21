@@ -28,7 +28,7 @@ public class IntakeCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return !oi.intakeButton.get() && intake.detectorValue() < 4.5;
+        return !oi.intakeButton.get() && intake.detectorValue() > 1;
     }
 
     @Override

@@ -24,13 +24,9 @@ public class DirectDriveArmCommand extends BaseCommand {
     @Override
     protected void execute() {
         if (direction) {
-            if ( arm.encVal() > 1.0) {
-                arm.lower(0.5);
-            } else arm.stopLift();
+            arm.lower(0.5);
         } else {
-            if (arm.encVal() < 2.35) {
-                arm.raise(0.5);
-            } else arm.stopLift();
+            arm.raise(0.5);
         }
     }
 

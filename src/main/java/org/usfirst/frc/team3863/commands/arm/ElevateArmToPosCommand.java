@@ -9,17 +9,23 @@ public class ElevateArmToPosCommand extends BaseCommand {
 
     public static final double GAIN = 4.0;
 
-    public double pos;
+    public final double pos;
+    public final double tolerance;
 
     public ElevateArmToPosCommand(double pos) {
+        this(pos, 0.05);
+    }
+
+    public ElevateArmToPosCommand(double pos, double tolerance){
+        this(pos, tolerance, -1);
+    }
+
+    public ElevateArmToPosCommand(double pos, double tolerance, double timeout) {
         super("Elevate Arm to Position");
         requires(arm);
         this.pos = pos;
-    }
-
-    public ElevateArmToPosCommand(double pos, double timeout){
-        this(pos);
-        setTimeout(timeout);
+        this.tolerance = tolerance;
+        if (timeout > 0) setTimeout(timeout);
     }
 
     @Override
