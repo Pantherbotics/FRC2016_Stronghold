@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3863;
 
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,12 +18,7 @@ import java.io.PrintStream;
  */
 public class Robot extends IterativeRobot {
 
-    /**
-     * <hr>
-     * <h1>Original System Out Stream</h1>
-     * <p>Saving a reference to the original System.out in case we ever need to restore from it in the code.</p>
-     */
-    final PrintStream originalOut = System.out;
+    CameraServer cameraServer = CameraServer.getInstance();
 
     /**
      * <hr>
@@ -32,11 +28,9 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 
+        cameraServer.setQuality(50);
+        cameraServer.startAutomaticCapture("cam0");
         BaseCommand.init();
-
-        //Hackey...
-//        PrintStream interceptor = new InterceptorPS(originalOut);
-//        System.setOut(interceptor);
     }
 
     public void disabledInit() {
