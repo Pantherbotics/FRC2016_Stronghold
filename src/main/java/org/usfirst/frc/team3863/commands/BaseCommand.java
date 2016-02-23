@@ -17,6 +17,7 @@ public abstract class BaseCommand extends Command {
     public static Arm arm = new Arm();
     public static Shooter shooter = new Shooter();
     public static Intake intake = new Intake();
+    public static Transmission transmission = new Transmission();
 
     public static void init() {
         oi = new OI();

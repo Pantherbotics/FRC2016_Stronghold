@@ -2,11 +2,11 @@ package org.usfirst.frc.team3863;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team3863.commands.*;
+import org.usfirst.frc.team3863.commands.CompressorControlCommand;
+import org.usfirst.frc.team3863.commands.DebugCommand;
 import org.usfirst.frc.team3863.commands.arm.DirectDriveArmCommand;
-import org.usfirst.frc.team3863.commands.arm.ElevateArmToPosCommand;
 import org.usfirst.frc.team3863.commands.arm.ExtendBigPistonCommand;
-import org.usfirst.frc.team3863.commands.drive.TransmissionCommand;
+import org.usfirst.frc.team3863.commands.drive.AutoTransmissionCommand;
 import org.usfirst.frc.team3863.commands.endeffector.IntakeCommand;
 import org.usfirst.frc.team3863.commands.endeffector.TimedIntakeCommand;
 import org.usfirst.frc.team3863.commands.groups.CenterGroup;
@@ -73,8 +73,9 @@ public class OI {
      * Constructor that registers all the buttons and there respective commands
      */
     public OI() {
-        rightJoyTrigger.whenPressed(new TransmissionCommand(true));
-        leftJoyTrigger.whenPressed(new TransmissionCommand(false));
+
+        rightJoyTrigger.whenPressed(new AutoTransmissionCommand.Switch(true));
+        leftJoyTrigger.whenPressed(new AutoTransmissionCommand.Switch(false));
 
         btnArmLower.whenPressed(new DirectDriveArmCommand(true));
         btnArmRaise.whenPressed(new DirectDriveArmCommand(false));

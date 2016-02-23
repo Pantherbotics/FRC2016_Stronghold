@@ -11,7 +11,7 @@ public class TransmissionCommand extends BaseCommand {
     private boolean enable = false;
 
     public TransmissionCommand(boolean enable) {
-        requires(pneumatics);
+        requires(transmission);
         this.enable = enable;
     }
 
@@ -23,9 +23,9 @@ public class TransmissionCommand extends BaseCommand {
     @Override
     protected void execute() {
         if (enable) {
-            pneumatics.fireSolenoid(pneumatics.getDriveTrainSolenoid(), DoubleSolenoid.Value.kForward);
+            pneumatics.fireSolenoid(transmission.getDriveTrainSolenoid(), DoubleSolenoid.Value.kForward);
         } else {
-            pneumatics.fireSolenoid(pneumatics.getDriveTrainSolenoid(), DoubleSolenoid.Value.kReverse);
+            pneumatics.fireSolenoid(transmission.getDriveTrainSolenoid(), DoubleSolenoid.Value.kReverse);
         }
     }
 

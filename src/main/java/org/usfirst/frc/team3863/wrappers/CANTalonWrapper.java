@@ -15,6 +15,7 @@ public class CANTalonWrapper {
      * <p>These motors should only be accessable from with the CANTalonWrapper class.</p>
      */
     private CANTalon m0, m1;
+    double value = 0;
 
     /**
      * <hr>
@@ -24,6 +25,10 @@ public class CANTalonWrapper {
     public CANTalonWrapper(int i0, int i1) {
         m0 = new CANTalon(i0);
         m1 = new CANTalon(i1);
+    }
+
+    public double getOutputValue() {
+        return value;
     }
 
     /**
@@ -40,6 +45,7 @@ public class CANTalonWrapper {
     public void set(double outputValue) {
         m0.set(outputValue);
         m1.set(outputValue);
+        this.value = outputValue;
     }
 
     public void setInverted(boolean isInverted) {
@@ -52,13 +58,13 @@ public class CANTalonWrapper {
     }
 
     public void set(double outputValue, byte thisValueDoesNotDoAnything) {
-        m0.set(outputValue, thisValueDoesNotDoAnything);
-        m1.set(outputValue, thisValueDoesNotDoAnything);
+        set(outputValue);
     }
 
     public void reset() {
         m0.reset();
         m1.reset();
+        this.value = 0;
     }
 
 
@@ -266,6 +272,7 @@ public class CANTalonWrapper {
     public void disable() {
         m0.disable();
         m1.disable();
+        this.value = 0;
     }
 
 
@@ -277,5 +284,6 @@ public class CANTalonWrapper {
     public void stopMotors() {
         m0.stopMotor();
         m1.stopMotor();
+        this.value = 0;
     }
 }

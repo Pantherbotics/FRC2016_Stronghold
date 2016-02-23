@@ -1,10 +1,10 @@
 package org.usfirst.frc.team3863.subsystems;
 
-import org.usfirst.frc.team3863.RobotMap;
-import org.usfirst.frc.team3863.commands.drive.TankDriveWithJoystickCommand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team3863.RobotMap;
+import org.usfirst.frc.team3863.commands.drive.TankDriveWithJoystickCommand;
 import org.usfirst.frc.team3863.wrappers.CANTalonWrapper;
 
 /**

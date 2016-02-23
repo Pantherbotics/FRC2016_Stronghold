@@ -23,15 +23,6 @@ public class Pneumatics extends Subsystem {
 
     /**
      * <hr>
-     * <h1>Drive Train Solenoid</h1>
-     * <p>The DoubleSolenoid that handles the transmission on the robot.</p>
-     *
-     * @see org.usfirst.frc.team3863.subsystems.DriveTrain
-     */
-    DoubleSolenoid driveTrainSolenoid = new DoubleSolenoid(RobotMap.DRIVE_TRAIN_SOLENOID_0, RobotMap.DRIVE_TRAIN_SOLENOID_1);
-
-    /**
-     * <hr>
      * <h1>Arm Solenoid</h1>
      * <p>The DoubleSolenoid that handles extending the Arm.</p>
      *
@@ -79,16 +70,6 @@ public class Pneumatics extends Subsystem {
         return compressor;
     }
 
-    /**
-     * <hr>
-     * <h1>Get Drive Train Solenoid</h1>
-     * <p>Eh... Returns the DoubleSolenoid that handles the transmission.</p>
-     *
-     * @see org.usfirst.frc.team3863.subsystems.DriveTrain
-     */
-    public DoubleSolenoid getDriveTrainSolenoid() {
-        return driveTrainSolenoid;
-    }
 
     /**
      * <hr>
