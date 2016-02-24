@@ -24,7 +24,7 @@ import java.io.PrintStream;
  */
 public class Robot extends IterativeRobot {
 
-    CameraServer cameraServer = CameraServer.getInstance();
+//    CameraServer cameraServer = CameraServer.getInstance();
 
     /**
      * <hr>
@@ -33,6 +33,7 @@ public class Robot extends IterativeRobot {
      * <p>Any and all initialization code should be run here.</p>
      */
     public void robotInit() {
+        super.robotInit();
         NS.connect(null, null);
 
         NS.addQueue(new Packet01("TeST").setDataType(Packet.Type.SERIALIZED), null, null);
@@ -43,11 +44,8 @@ public class Robot extends IterativeRobot {
         NS.addQueue(new Packet03("Josh", "This is MIKE!").setDataType(Packet.Type.SERIALIZED), null, null);
         NS.addQueue(new Packet03("Mike", "This is JOSH!").setDataType(Packet.Type.SERIALIZED), null, null);
 
-        cameraServer.setQuality(50);
-        cameraServer.startAutomaticCapture("cam0");
-
-        USBCamera usbCamera = new USBCamera("cam0");
-        usbCamera.openCamera();
+//        cameraServer.setQuality(50);
+//        cameraServer.startAutomaticCapture("cam0");
         BaseCommand.init();
     }
 
@@ -83,6 +81,8 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        NS.addQueue(new Packet02("Arm", BaseCommand.arm.encVal()), null, null);
+        NS.addQueue(new Packet02("Ball", BaseCommand.intake.detectorValue()), null, null);
         NS.fireData(null, null);
     }
 }

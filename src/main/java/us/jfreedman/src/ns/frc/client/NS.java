@@ -25,20 +25,23 @@ public class NS extends Thread implements Runnable {
         }
     }
 
-    public synchronized static <T extends Packet> void addQueue(T t, Consumer<Object> success, Consumer<Object> failure) {
+    public static <T extends Packet> void addQueue(T t, Consumer<Object> success, Consumer<Object> failure) {
         dataQueue.add(new Node(t, success, failure, System.currentTimeMillis()));
     }
 
-    public synchronized static void connect(Consumer<Object> success, Consumer<Object> failure) {
+    public static void connect(Consumer<Object> success, Consumer<Object> failure) {
+        System.out.println("CONNECTING....");
         try {
-            serverConnection = new Socket("10.38.2.244", 7093);
+            serverConnection = new Socket("172.22.11.1", 7093);
             serverConnection.setKeepAlive(true);
+            serverConnection.setSoTimeout(0);
             os = new ObjectOutputStream(serverConnection.getOutputStream());
         } catch (Exception e) {
             if (failure != null) {
                 failure.accept(e.getMessage());
             } else {
                 e.printStackTrace();
+                connect(success, failure);
             }
             return;
         }
@@ -47,7 +50,7 @@ public class NS extends Thread implements Runnable {
         }
     }
 
-    public synchronized static void fireData(Consumer<Object> success, Consumer<Object> failure) {
+    public static void fireData(Consumer<Object> success, Consumer<Object> failure) {
         try {
             if (!dataQueue.isEmpty()) {
                 dataQueue.removeIf(node -> node.packet.getTimeout() != -1 && System.currentTimeMillis() - node.initTime >= node.packet.getTimeout());
@@ -79,7 +82,7 @@ public class NS extends Thread implements Runnable {
         }
     }
 
-    public synchronized static void close(Consumer<Object> success, Consumer<Object> failure) {
+    public static void close(Consumer<Object> success, Consumer<Object> failure) {
         try {
             serverConnection.getOutputStream().close();
             serverConnection.getInputStream().close();
