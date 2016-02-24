@@ -2,6 +2,8 @@ package org.usfirst.frc.team3863;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import org.usfirst.frc.team3863.commands.*;
 import org.usfirst.frc.team3863.commands.arm.DirectDriveArmCommand;
 import org.usfirst.frc.team3863.commands.arm.ElevateArmToPosCommand;
