@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3863.subsystems;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -64,4 +65,9 @@ public class DriveTrain extends Subsystem {
         setDefaultCommand(new TankDriveWithJoystickCommand());
     }
 
+
+    public void changeControlMode(CANTalon.TalonControlMode controlMode) {
+        leftMotors.changeControlMode(controlMode);
+        rightMotors.changeControlMode(controlMode);
+    }
 }

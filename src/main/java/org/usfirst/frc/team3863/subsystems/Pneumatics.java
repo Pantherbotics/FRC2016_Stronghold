@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3863.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -30,11 +31,21 @@ public class Pneumatics extends Subsystem {
      */
     DoubleSolenoid armSolenoid = new DoubleSolenoid(RobotMap.ARM_SOLENOID_0, RobotMap.ARM_SOLENOID_1);
 
+    AnalogInput pressureTransducer = new AnalogInput(RobotMap.PRESSURE_SENSOR);
+
 
     public Pneumatics() {
         super("Pneumatics Subsystem");
         compressor = new Compressor(RobotMap.COMPRESSOR);
         stopCompressor();
+    }
+
+    public AnalogInput getPressureTransducer() {
+        return pressureTransducer;
+    }
+
+    public double getPressure(){
+        return Math.max((pressureTransducer.getAverageVoltage() * 43.7) - 51.1, 0);
     }
 
     /**

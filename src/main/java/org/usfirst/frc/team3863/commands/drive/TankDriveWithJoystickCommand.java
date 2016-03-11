@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3863.commands.drive;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import org.usfirst.frc.team3863.commands.BaseCommand;
 
 public class TankDriveWithJoystickCommand extends BaseCommand {
@@ -13,6 +14,7 @@ public class TankDriveWithJoystickCommand extends BaseCommand {
     protected void initialize() {
         // TODO Auto-generated method stub
         driveTrain.enableMotors();
+        driveTrain.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3863.commands.arm;
 
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import org.usfirst.frc.team3863.commands.BaseCommand;
 
 /**
@@ -10,9 +11,12 @@ public class DirectDriveArmCommand extends BaseCommand {
 
     boolean direction = false;
 
-    public DirectDriveArmCommand(boolean direction) {
+    final Trigger trigger;
+
+    public DirectDriveArmCommand(boolean direction, Trigger trigger) {
         requires(arm);
         this.direction = direction;
+        this.trigger = trigger;
     }
 
     @Override
@@ -32,7 +36,7 @@ public class DirectDriveArmCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return !(oi.btnArmLower.get() || oi.btnArmRaise.get());
+        return !trigger.get();
     }
 
     @Override
@@ -42,5 +46,6 @@ public class DirectDriveArmCommand extends BaseCommand {
 
     @Override
     protected void interrupted() {
+        end();
     }
 }

@@ -18,7 +18,7 @@ public class Transmission extends Subsystem {
      *
      * @see org.usfirst.frc.team3863.subsystems.DriveTrain
      */
-    DoubleSolenoid driveTrainSolenoid = new DoubleSolenoid(RobotMap.DRIVE_TRAIN_SOLENOID_0, RobotMap.DRIVE_TRAIN_SOLENOID_1);
+    DoubleSolenoid driveTrainSolenoid = new DoubleSolenoid(RobotMap.DRIVE_TRAIN_SOLENOID_1, RobotMap.DRIVE_TRAIN_SOLENOID_0);
 
 
     /**

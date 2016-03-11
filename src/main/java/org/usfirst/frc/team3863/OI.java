@@ -1,7 +1,9 @@
 package org.usfirst.frc.team3863;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import org.usfirst.frc.team3863.commands.CompressorControlCommand;
 import org.usfirst.frc.team3863.commands.DebugCommand;
 import org.usfirst.frc.team3863.commands.arm.DirectDriveArmCommand;
@@ -20,6 +22,8 @@ import org.usfirst.frc.team3863.commands.groups.ShootGroup;
  * <p>The class that essentially links buttons to joysticks to ports to commands xD</p>
  */
 public class OI {
+
+    CameraServer camera = CameraServer.getInstance();
 
     /**
      * <hr>
@@ -69,32 +73,64 @@ public class OI {
             leftJoyButton11 = new JoystickButton(leftJoystick, 11),
             leftJoyButton12 = new JoystickButton(leftJoystick, 12);
 
+    public Joystick controller = new Joystick(RobotMap.CONTROLLER);
+
+    public JoystickButton
+            contArmUp = new JoystickButton(controller, 6),
+            contArmDown = new JoystickButton(controller, 8),
+            contFire = new JoystickButton(controller, 1),
+            contEject = new JoystickButton(controller, 4),
+            contCenter = new JoystickButton(controller, 3),
+            contIntake = new JoystickButton(controller, 2),
+            contExtend = new JoystickButton(controller, 5),
+            contClimb = new JoystickButton(controller, 7),
+            contLock = new JoystickButton(controller, 10);
+
+
     /**
      * Constructor that registers all the buttons and there respective commands
      */
     public OI() {
 
+
+        camera.setQuality(50);
+        camera.startAutomaticCapture("cam0");
+
         rightJoyTrigger.whenPressed(new AutoTransmissionCommand.Switch(true));
         leftJoyTrigger.whenPressed(new AutoTransmissionCommand.Switch(false));
 
-        btnArmLower.whenPressed(new DirectDriveArmCommand(true));
-        btnArmRaise.whenPressed(new DirectDriveArmCommand(false));
+        btnArmLower.whenPressed(new DirectDriveArmCommand(true, btnArmLower));
+        btnArmRaise.whenPressed(new DirectDriveArmCommand(false, btnArmRaise));
+        contArmDown.whenPressed(new DirectDriveArmCommand(true, contArmDown));
+        contArmUp.whenPressed(new DirectDriveArmCommand(false, contArmUp));
 
 
         rightJoyButton7.whenPressed(new ExtendBigPistonCommand(true));
         rightJoyButton8.whenPressed(new ExtendBigPistonCommand(false));
+        contClimb.whenPressed(new ExtendBigPistonCommand(false));
+        new Trigger() {
+
+            @Override
+            public boolean get() {
+                return contLock.get() && contExtend.get();
+            }
+        }.whenActive(new ExtendBigPistonCommand(true));
 
         rightJoyButton11.whenPressed(new CompressorControlCommand(true));
         rightJoyButton12.whenPressed(new CompressorControlCommand(false));
 
-        leftJoyButton9.whenPressed(new DebugCommand());
-        leftJoyButton4.whenPressed(new ShootGroup());
         leftJoyButton10.whenPressed(new PrepareShootGroup());
         leftJoyButton11.whenPressed(new ClimbGroup());
 
+        leftJoyButton9.whenPressed(new DebugCommand());
 
+        leftJoyButton4.whenPressed(new ShootGroup());
         intakeButton.whenPressed(new IntakeCommand(0.5));
         leftJoyButton5.whileHeld(new CenterGroup());
-        leftJoyButton3.whenPressed(new TimedIntakeCommand(0.5, 0.3, true));
+        leftJoyButton3.whenPressed(new TimedIntakeCommand(0.5, 1, true));
+        contFire.whenPressed(new ShootGroup());
+        contIntake.whenPressed(new IntakeCommand(0.5));
+        contCenter.whileHeld(new CenterGroup());
+        contEject.whenPressed(new TimedIntakeCommand(0.5, 1, true));
     }
 }

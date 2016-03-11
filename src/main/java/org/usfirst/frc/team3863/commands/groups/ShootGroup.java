@@ -20,7 +20,7 @@ public class ShootGroup extends CommandGroup {
         addSequential(new WaitCommand(0.5));
         addParallel(new TimedIntakeCommand(0.5, 1, true));
         //addSequential(new WaitCommand(0.05));
-        addSequential(new ShootCommand(0.07));
+        addSequential(new ShootCommand(0.08));
 
         //
     }
