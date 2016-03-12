@@ -1,9 +1,9 @@
 package org.usfirst.frc.team3863;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import org.usfirst.frc.team3863.commands.ChangeCameraCommand;
 import org.usfirst.frc.team3863.commands.CompressorControlCommand;
 import org.usfirst.frc.team3863.commands.DebugCommand;
 import org.usfirst.frc.team3863.commands.arm.DirectDriveArmCommand;
@@ -12,8 +12,6 @@ import org.usfirst.frc.team3863.commands.drive.AutoTransmissionCommand;
 import org.usfirst.frc.team3863.commands.endeffector.IntakeCommand;
 import org.usfirst.frc.team3863.commands.endeffector.TimedIntakeCommand;
 import org.usfirst.frc.team3863.commands.groups.CenterGroup;
-import org.usfirst.frc.team3863.commands.groups.ClimbGroup;
-import org.usfirst.frc.team3863.commands.groups.PrepareShootGroup;
 import org.usfirst.frc.team3863.commands.groups.ShootGroup;
 
 /**
@@ -23,7 +21,7 @@ import org.usfirst.frc.team3863.commands.groups.ShootGroup;
  */
 public class OI {
 
-    CameraServer camera = CameraServer.getInstance();
+    public CameraServerModded camera = new CameraServerModded();
 
     /**
      * <hr>
@@ -96,6 +94,7 @@ public class OI {
         camera.setQuality(50);
         camera.startAutomaticCapture("cam0");
 
+
         rightJoyTrigger.whenPressed(new AutoTransmissionCommand.Switch(true));
         leftJoyTrigger.whenPressed(new AutoTransmissionCommand.Switch(false));
 
@@ -109,7 +108,6 @@ public class OI {
         rightJoyButton8.whenPressed(new ExtendBigPistonCommand(false));
         contClimb.whenPressed(new ExtendBigPistonCommand(false));
         new Trigger() {
-
             @Override
             public boolean get() {
                 return contLock.get() && contExtend.get();
@@ -119,8 +117,10 @@ public class OI {
         rightJoyButton11.whenPressed(new CompressorControlCommand(true));
         rightJoyButton12.whenPressed(new CompressorControlCommand(false));
 
-        leftJoyButton10.whenPressed(new PrepareShootGroup());
-        leftJoyButton11.whenPressed(new ClimbGroup());
+        leftJoyButton10.whenPressed(new ChangeCameraCommand("cam0"));
+        leftJoyButton11.whenPressed(new ChangeCameraCommand("cam3"));
+//        leftJoyButton10.whenPressed(new PrepareShootGroup());
+//        leftJoyButton11.whenPressed(new ClimbGroup());
 
         leftJoyButton9.whenPressed(new DebugCommand());
 

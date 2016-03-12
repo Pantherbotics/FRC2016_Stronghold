@@ -9,18 +9,21 @@ import org.usfirst.frc.team3863.commands.BaseCommand;
  */
 public class DriveDistanceCommand extends BaseCommand {
 
+    final double distance;
 
-
-    public DriveDistanceCommand() {
+    public DriveDistanceCommand(double distance) {
         super("Drive Distance Command");
         requires(driveTrain);
+        requires(transmission);
+        this.distance = distance;
 
     }
 
     @Override
     protected void initialize() {
         driveTrain.changeControlMode(CANTalon.TalonControlMode.Position);
-
+        driveTrain.rightMotors.setPosition(driveTrain.rightMotors.getPosition() + distance);
+        driveTrain.leftMotors.setPosition(driveTrain.leftMotors.getPosition() - distance);
     }
 
     @Override
@@ -30,7 +33,7 @@ public class DriveDistanceCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override

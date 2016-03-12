@@ -3,10 +3,14 @@ package org.usfirst.frc.team3863;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3863.commands.BaseCommand;
 import org.usfirst.frc.team3863.commands.CompressorControlCommand;
+import org.usfirst.frc.team3863.commands.drive.DriveTimeCommand;
 
 import java.io.PrintStream;
 
@@ -24,6 +28,9 @@ public class Robot extends IterativeRobot {
      */
     final PrintStream originalOut = System.out;
 
+    Command autonCommand;
+    SendableChooser sendableChooser;
+
     /**
      * <hr>
      * <h1>Robot Initialization</h1>
@@ -34,6 +41,44 @@ public class Robot extends IterativeRobot {
 
         BaseCommand.init();
 
+        sendableChooser = new SendableChooser();
+
+        sendableChooser.addDefault("Auton On", new CommandGroup() {
+            {
+                new CompressorControlCommand(true).start();
+                BaseCommand.arm.armMotor.enable();
+                BaseCommand.driveTrain.enableMotors();
+                BaseCommand.intake.pickupMotor.enable();
+                new DriveTimeCommand(7.0, 0.7).start();
+            }
+        });
+        sendableChooser.addObject("Auton Off", new Command() {
+            @Override
+            protected void initialize() {
+
+            }
+
+            @Override
+            protected void execute() {
+
+            }
+
+            @Override
+            protected boolean isFinished() {
+                return true;
+            }
+
+            @Override
+            protected void end() {
+
+            }
+
+            @Override
+            protected void interrupted() {
+
+            }
+        });
+        SmartDashboard.putData("Auto Mode", sendableChooser);
         //Hackey...
 //        PrintStream interceptor = new InterceptorPS(originalOut);
 //        System.setOut(interceptor);
@@ -50,10 +95,9 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        new CompressorControlCommand(true).start();
-        BaseCommand.arm.armMotor.enable();
-        BaseCommand.driveTrain.enableMotors();
-        BaseCommand.intake.pickupMotor.enable();
+        autonCommand = (Command) sendableChooser.getSelected();
+
+        if (autonCommand != null) autonCommand.start();
     }
 
     public void autonomousPeriodic() {
@@ -61,6 +105,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+        if (autonCommand != null) autonCommand.cancel();
+
         new CompressorControlCommand(true).start();
         BaseCommand.arm.armMotor.enable();
         BaseCommand.driveTrain.enableMotors();
