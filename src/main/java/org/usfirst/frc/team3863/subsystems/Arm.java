@@ -12,10 +12,17 @@ import org.usfirst.frc.team3863.RobotMap;
  *
  * @see edu.wpi.first.wpilibj.command.Subsystem
  */
+@SuppressWarnings("SameParameterValue")
 public class Arm extends Subsystem {
     public CANTalon armMotor = new CANTalon(RobotMap.ARM_MOTOR);
 
     public AnalogInput magEncoder = new AnalogInput(RobotMap.ARM_ENCODER);
+
+    public double getOffset() {
+        return offset;
+    }
+
+    double offset = -1.07;
 
     public Arm() {
         super("Arm Subsystem");
@@ -32,7 +39,7 @@ public class Arm extends Subsystem {
     }
 
     public double encVal() {
-        return magEncoder.getVoltage();
+        return magEncoder.getVoltage() + offset;
     }
 
     public void lower(double v) {
@@ -45,5 +52,9 @@ public class Arm extends Subsystem {
 
     public void stopLift() {
         armMotor.set(0);
+    }
+
+    public void update(){
+        if(armMotor.isRevLimitSwitchClosed()) offset = - magEncoder.getVoltage();
     }
 }

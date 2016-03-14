@@ -10,6 +10,7 @@ import org.usfirst.frc.team3863.commands.BaseCommand;
 public class DirectDriveArmCommand extends BaseCommand {
 
     boolean direction = false;
+    double power = 0.25;
 
     final Trigger trigger;
 
@@ -23,14 +24,18 @@ public class DirectDriveArmCommand extends BaseCommand {
     protected void initialize() {
         arm.armMotor.enable();
         arm.armMotor.enableControl();
+        power = 0.25;
     }
 
     @Override
     protected void execute() {
         if (direction) {
-            arm.lower(0.5);
+            arm.lower(power);
         } else {
-            arm.raise(0.5);
+            arm.raise(power);
+        }
+        if(power < 0.75){
+            power += 0.02;
         }
     }
 

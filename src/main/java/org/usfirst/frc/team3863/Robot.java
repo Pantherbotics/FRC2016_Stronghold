@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
     final PrintStream originalOut = System.out;
 
     Command autonCommand;
-    SendableChooser sendableChooser;
+    SendableChooser autonChooser;
 
     /**
      * <hr>
@@ -41,67 +41,46 @@ public class Robot extends IterativeRobot {
 
         BaseCommand.init();
 
-        sendableChooser = new SendableChooser();
+        autonChooser = new SendableChooser();
 
-        sendableChooser.addDefault("Auton On", new CommandGroup() {
+        autonChooser.addDefault("Auton On", new CommandGroup() {
             {
-                new CompressorControlCommand(true).start();
+                addSequential(new CompressorControlCommand(true));
+                addSequential(new DriveTimeCommand(5.0, 0.7));
+            }
+
+            @Override
+            protected void initialize() {
+                super.initialize();
                 BaseCommand.arm.armMotor.enable();
                 BaseCommand.driveTrain.enableMotors();
                 BaseCommand.intake.pickupMotor.enable();
-                new DriveTimeCommand(7.0, 0.7).start();
             }
         });
-        sendableChooser.addObject("Auton Off", new Command() {
-            @Override
-            protected void initialize() {
-
-            }
-
-            @Override
-            protected void execute() {
-
-            }
-
-            @Override
-            protected boolean isFinished() {
-                return true;
-            }
-
-            @Override
-            protected void end() {
-
-            }
-
-            @Override
-            protected void interrupted() {
-
-            }
-        });
-        SmartDashboard.putData("Auto Mode", sendableChooser);
-        //Hackey...
-//        PrintStream interceptor = new InterceptorPS(originalOut);
-//        System.setOut(interceptor);
+        autonChooser.addObject("Auton Off", new CompressorControlCommand(true));
+        SmartDashboard.putData("Auto Mode", autonChooser);
     }
 
     public void disabledInit() {
-        SmartDashboard.putString("message", "I'm pretty tired... I think I'll go home now.");
-        //Forest Gump:
-        //https://www.youtube.com/watch?v=Bw0MBr0Y5x0
+
     }
 
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Pressure", BaseCommand.pneumatics.getPressure());
+        SmartDashboard.putNumber("Pressure Meter", BaseCommand.pneumatics.getPressure());
     }
 
     public void autonomousInit() {
-        autonCommand = (Command) sendableChooser.getSelected();
+        autonCommand = (Command) autonChooser.getSelected();
 
         if (autonCommand != null) autonCommand.start();
     }
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Pressure", BaseCommand.pneumatics.getPressure());
+        SmartDashboard.putNumber("Pressure Meter", BaseCommand.pneumatics.getPressure());
     }
 
     public void teleopInit() {
@@ -115,6 +94,9 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        BaseCommand.arm.update();
+
         SmartDashboard.putNumber("Pressure", BaseCommand.pneumatics.getPressure());
+        SmartDashboard.putNumber("Pressure Meter", BaseCommand.pneumatics.getPressure());
     }
 }

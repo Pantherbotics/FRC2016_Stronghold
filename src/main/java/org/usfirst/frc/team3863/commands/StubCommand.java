@@ -1,14 +1,15 @@
 package org.usfirst.frc.team3863.commands;
 
+import edu.wpi.first.wpilibj.command.Command;
+
 /**
- * Created by Fox on 2/13/2016.
+ * Created by Fox on 3/11/2016.
  * Project: 2016Robot
  */
-public class DebugCommand extends BaseCommand {
-
+public class StubCommand extends Command {
     @Override
     protected void initialize() {
-        System.out.println("ARM: " + arm.encVal() + "   OFFSET: " + arm.getOffset() + "   BALL: " + intake.detectorValue() );
+
     }
 
     @Override
@@ -18,7 +19,7 @@ public class DebugCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     @Override
@@ -28,6 +29,6 @@ public class DebugCommand extends BaseCommand {
 
     @Override
     protected void interrupted() {
-        end();
+
     }
 }

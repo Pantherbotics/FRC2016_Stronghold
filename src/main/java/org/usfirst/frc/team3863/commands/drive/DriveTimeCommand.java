@@ -7,6 +7,7 @@ import org.usfirst.frc.team3863.commands.BaseCommand;
  * Created by Fox on 3/11/2016.
  * Project: 2016Robot
  */
+@SuppressWarnings("SameParameterValue")
 public class DriveTimeCommand extends BaseCommand {
 
     final double speed;

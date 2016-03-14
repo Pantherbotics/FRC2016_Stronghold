@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.CANTalon;
  * <h1>CANTalonWrapper</h1>
  * <p>A class that links, via software, two motors together.</p>
  */
+@SuppressWarnings("SameParameterValue")
 public class CANTalonWrapper {
 
     /**
@@ -38,13 +39,14 @@ public class CANTalonWrapper {
     public CANTalonWrapper(int primary, int secondary, boolean invert) {
         this.primary = new CANTalon(primary);
         this.secondary = new CANTalon(secondary);
-        this.secondary.changeControlMode(CANTalon.TalonControlMode.Follower);
-        this.secondary.set(primary);
+        //this.secondary.changeControlMode(CANTalon.TalonControlMode.Follower);
+        //this.secondary.set(primary);
         setInverted(invert);
     }
 
     public void set(double outputValue) {
         primary.set(outputValue);
+        secondary.set(outputValue);
         this.value = outputValue;
     }
 

@@ -11,6 +11,7 @@ import java.io.PrintStream;
  * Created by Joshua Freedman on 2/8/2016.
  * Project: 2016Robot
  */
+@SuppressWarnings("SameParameterValue")
 public class InterceptorPS extends PrintStream {
 
     boolean errorStream = false;

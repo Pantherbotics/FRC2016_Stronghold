@@ -12,7 +12,9 @@ import org.usfirst.frc.team3863.commands.drive.AutoTransmissionCommand;
 import org.usfirst.frc.team3863.commands.endeffector.IntakeCommand;
 import org.usfirst.frc.team3863.commands.endeffector.TimedIntakeCommand;
 import org.usfirst.frc.team3863.commands.groups.CenterGroup;
+import org.usfirst.frc.team3863.commands.groups.ClimbGroup;
 import org.usfirst.frc.team3863.commands.groups.ShootGroup;
+import org.usfirst.frc.team3863.util.TriggerCollection;
 
 /**
  * <hr>
@@ -89,8 +91,6 @@ public class OI {
      * Constructor that registers all the buttons and there respective commands
      */
     public OI() {
-
-
         camera.setQuality(50);
         camera.startAutomaticCapture("cam0");
 
@@ -105,8 +105,8 @@ public class OI {
 
 
         rightJoyButton7.whenPressed(new ExtendBigPistonCommand(true));
-        rightJoyButton8.whenPressed(new ExtendBigPistonCommand(false));
-        contClimb.whenPressed(new ExtendBigPistonCommand(false));
+        rightJoyButton8.whenPressed(new ClimbGroup());
+        contClimb.whenPressed(new ClimbGroup());
         new Trigger() {
             @Override
             public boolean get() {
@@ -124,12 +124,14 @@ public class OI {
 
         leftJoyButton9.whenPressed(new DebugCommand());
 
+        TriggerCollection col = new TriggerCollection(false, intakeButton, contIntake);
+
         leftJoyButton4.whenPressed(new ShootGroup());
-        intakeButton.whenPressed(new IntakeCommand(0.5));
+        intakeButton.whenPressed(new IntakeCommand(0.5, col));
         leftJoyButton5.whileHeld(new CenterGroup());
         leftJoyButton3.whenPressed(new TimedIntakeCommand(0.5, 1, true));
         contFire.whenPressed(new ShootGroup());
-        contIntake.whenPressed(new IntakeCommand(0.5));
+        contIntake.whenPressed(new IntakeCommand(0.5, col));
         contCenter.whileHeld(new CenterGroup());
         contEject.whenPressed(new TimedIntakeCommand(0.5, 1, true));
     }

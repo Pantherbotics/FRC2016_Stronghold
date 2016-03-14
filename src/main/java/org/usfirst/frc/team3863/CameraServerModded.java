@@ -16,16 +16,13 @@ import java.nio.ByteBuffer;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-// replicates CameraServer.cpp in java lib
-
 /**
- * Created by Fox on 3/11/2016.
+ * Created by Joshua Freedman on 3/11/2016.
  * Project: 2016Robot
  */
 public class CameraServerModded {
 
-    public Thread captureThread;
-
+    private Thread captureThread;
 
     private static final int kPort = 1180;
     private static final byte[] kMagicNumber = {0x01, 0x00, 0x00, 0x00};
@@ -33,28 +30,17 @@ public class CameraServerModded {
     private static final int kSize320x240 = 1;
     private static final int kSize160x120 = 2;
     private static final int kHardwareCompression = -1;
-    private static final String kDefaultCameraName = "cam1";
     private static final int kMaxImageSize = 200000;
-    private static CameraServerModded server;
 
-//    public static CameraServerModded getInstance() {
-//        if (server == null) {
-//            server = new CameraServerModded();
-//        }
-//        return server;
-//    }
-
-    public Thread serverThread;
     private int m_quality;
-    private boolean m_autoCaptureStarted;
     private boolean m_hwClient = true;
     private USBCamera m_camera;
     private CameraData m_imageData;
-    private Deque<ByteBuffer> m_imageDataPool;
+    private final Deque<ByteBuffer> m_imageDataPool;
 
     private class CameraData {
-        NIVision.RawData data;
-        int start;
+        final NIVision.RawData data;
+        final int start;
 
         public CameraData(NIVision.RawData d, int s) {
             data = d;
@@ -70,15 +56,11 @@ public class CameraServerModded {
         for (int i = 0; i < 3; i++) {
             m_imageDataPool.addLast(ByteBuffer.allocateDirect(kMaxImageSize));
         }
-        serverThread = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    serve();
-                } catch (IOException e) {
-                    // do stuff here
-                } catch (InterruptedException e) {
-                    // do stuff here
-                }
+        Thread serverThread = new Thread(() -> {
+            try {
+                serve();
+            } catch (IOException | InterruptedException ignored) {
+
             }
         });
         serverThread.setName("CameraServer Send Thread");
@@ -104,11 +86,7 @@ public class CameraServerModded {
      *
      * @param image The IMAQ image to show on the dashboard
      */
-    public void setImage(NIVision.Image image) {
-        // handle multi-threadedness
-
-    /* Flatten the IMAQ image to a JPEG */
-
+    private void setImage(NIVision.Image image) {
         NIVision.RawData data =
                 NIVision.imaqFlatten(image, NIVision.FlattenType.FLATTEN_IMAGE,
                         NIVision.CompressionType.COMPRESSION_JPEG, 10 * m_quality);
@@ -119,7 +97,6 @@ public class CameraServerModded {
             hwClient = m_hwClient;
         }
 
-    /* Find the start of the JPEG data */
         int index = 0;
         if (hwClient) {
             while (index < buffer.limit() - 1) {
@@ -134,17 +111,6 @@ public class CameraServerModded {
         }
 
         setImageData(data, index);
-    }
-
-    /**
-     * Start automatically capturing images to send to the dashboard. You should
-     * call this method to just see a camera feed on the dashboard without doing
-     * any vision processing on the roboRIO. {@link #setImage} shouldn't be called
-     * after this is called. This overload calles
-     * {@link #startAutomaticCapture(String)} with the default camera name
-     */
-    public void startAutomaticCapture() {
-        startAutomaticCapture(USBCamera.kDefaultCameraName);
     }
 
     /**
@@ -167,24 +133,18 @@ public class CameraServerModded {
         }
     }
 
-    public synchronized void startAutomaticCapture(USBCamera camera) {
-        m_autoCaptureStarted = true;
+    private synchronized void startAutomaticCapture(USBCamera camera) {
         m_camera = camera;
 
         m_camera.startCapture();
         if (captureThread != null) captureThread.stop();
 
-        captureThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                capture();
-            }
-        });
+        captureThread = new Thread(this::capture);
         captureThread.setName("Camera Capture Thread");
         captureThread.start();
     }
 
-    protected void capture() {
+    private void capture() {
         NIVision.Image frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
         while (true) {
             boolean hwClient;
@@ -221,13 +181,6 @@ public class CameraServerModded {
 
 
     /**
-     * check if auto capture is started
-     */
-    public synchronized boolean isAutoCaptureStarted() {
-        return m_autoCaptureStarted;
-    }
-
-    /**
      * Sets the size of the image to use. Use the public kSize constants to set
      * the correct mode, or set it directory on a camera and call the appropriate
      * autoCapture method
@@ -235,7 +188,7 @@ public class CameraServerModded {
      *
      * @param size The size to use
      */
-    public synchronized void setSize(int size) {
+    private synchronized void setSize(int size) {
         if (m_camera == null)
             return;
         switch (size) {
@@ -261,24 +214,15 @@ public class CameraServerModded {
     }
 
     /**
-     * Get the quality of the compressed image sent to the dashboard
-     *
-     * @return The quality, from 0 to 100
-     */
-    public synchronized int getQuality() {
-        return m_quality;
-    }
-
-    /**
      * Run the M-JPEG server.
-     * 
+     *
      * This function listens for a connection from the dashboard in a background
      * thread, then sends back the M-JPEG stream.
      *
      * @throws IOException          if the Socket connection fails
      * @throws InterruptedException if the sleep is interrupted
      */
-    protected void serve() throws IOException, InterruptedException {
+    private void serve() throws IOException, InterruptedException {
 
         ServerSocket socket = new ServerSocket();
         socket.setReuseAddress(true);
@@ -318,7 +262,7 @@ public class CameraServerModded {
                 long period = (long) (1000 / (1.0 * fps));
                 while (true) {
                     long t0 = System.currentTimeMillis();
-                    CameraData imageData = null;
+                    CameraData imageData;
                     synchronized (this) {
                         wait();
                         imageData = m_imageData;
@@ -359,12 +303,7 @@ public class CameraServerModded {
                 }
             } catch (IOException ex) {
                 DriverStation.reportError(ex.getMessage(), true);
-                continue;
             }
         }
-    }
-
-    public void destroy() {
-        m_camera.closeCamera();
     }
 }

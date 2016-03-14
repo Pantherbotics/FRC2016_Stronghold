@@ -7,6 +7,7 @@ import org.usfirst.frc.team3863.subsystems.*;
 /**
  * Created by robotics on 2/9/2016.
  */
+@SuppressWarnings("SameParameterValue")
 public abstract class BaseCommand extends Command {
 
     public static OI oi;
@@ -18,6 +19,7 @@ public abstract class BaseCommand extends Command {
     public static Shooter shooter = new Shooter();
     public static Intake intake = new Intake();
     public static Transmission transmission = new Transmission();
+    public static LEDs leds = new LEDs();
 
     public static void init() {
         oi = new OI();

@@ -5,9 +5,10 @@ import org.usfirst.frc.team3863.commands.BaseCommand;
 /**
  * Created by robotics on 2/9/2016.
  */
+@SuppressWarnings("SameParameterValue")
 public class ElevateArmToPosCommand extends BaseCommand {
 
-    public static final double GAIN = 4.0;
+    public final double gain;
 
     public final double pos;
     public final double tolerance;
@@ -20,8 +21,13 @@ public class ElevateArmToPosCommand extends BaseCommand {
         this(pos, tolerance, -1);
     }
 
-    public ElevateArmToPosCommand(double pos, double tolerance, double timeout) {
+    public ElevateArmToPosCommand(double pos, double tolerance, double timeout){
+        this(pos, tolerance, timeout, 4.0);
+    }
+
+    public ElevateArmToPosCommand(double pos, double tolerance, double timeout, double gain) {
         super("Elevate Arm to Position");
+        this.gain = gain;
         requires(arm);
         this.pos = pos;
         this.tolerance = tolerance;
@@ -35,12 +41,12 @@ public class ElevateArmToPosCommand extends BaseCommand {
 
     @Override
     protected void execute() {
-        arm.raise((pos - arm.encVal()) * GAIN);
+        arm.raise((pos - arm.encVal()) * gain);
     }
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut() || (Math.abs(pos - arm.encVal()) < 0.05);
+        return isTimedOut() || (Math.abs(pos - arm.encVal()) < tolerance);
     }
 
     @Override

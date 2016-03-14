@@ -68,6 +68,8 @@ public class AutoTransmissionCommand extends BaseCommand {
         @Override
         protected void initialize() {
             instance.fastMode = state;
+            byte[] array = {4, 1, 6, (byte) (state ? 20 : 10)};
+            leds.getPort().write(array, 4);
         }
 
         @Override
