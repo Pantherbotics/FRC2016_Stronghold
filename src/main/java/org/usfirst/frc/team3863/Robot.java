@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3863;
 
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -21,12 +22,7 @@ import java.io.PrintStream;
  */
 public class Robot extends IterativeRobot {
 
-    /**
-     * <hr>
-     * <h1>Original System Out Stream</h1>
-     * <p>Saving a reference to the original System.out in case we ever need to restore from it in the code.</p>
-     */
-    final PrintStream originalOut = System.out;
+    CameraServer cameraServer = CameraServer.getInstance();
 
     Command autonCommand;
     SendableChooser autonChooser;
@@ -39,8 +35,9 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 
+        cameraServer.setQuality(50);
+        cameraServer.startAutomaticCapture("cam0");
         BaseCommand.init();
-
         autonChooser = new SendableChooser();
 
         autonChooser.addDefault("Auton On", new CommandGroup() {
