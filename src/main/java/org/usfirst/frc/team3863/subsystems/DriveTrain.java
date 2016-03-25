@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3863.RobotMap;
+import org.usfirst.frc.team3863.commands.drive.AdvancedDriveCommand;
 import org.usfirst.frc.team3863.commands.drive.TankDriveWithJoystickCommand;
 import org.usfirst.frc.team3863.wrappers.CANTalonWrapper;
 
@@ -62,7 +63,7 @@ public class DriveTrain extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new TankDriveWithJoystickCommand());
+        setDefaultCommand(AdvancedDriveCommand.getInstance());
     }
 
 

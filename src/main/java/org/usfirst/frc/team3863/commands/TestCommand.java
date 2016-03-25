@@ -14,8 +14,8 @@ public class TestCommand extends BaseCommand {
 
     @Override
     protected void initialize() {
-        System.out.println("CENTERTRUE");
-        shooter.setCenteringSolenoid(true);
+        byte[] array = {1,2,3,4};
+        leds.getPort().write(array, 4);
     }
 
     @Override
@@ -30,8 +30,7 @@ public class TestCommand extends BaseCommand {
 
     @Override
     protected void end() {
-        System.out.println("CENTERFALSE");
-        shooter.setCenteringSolenoid(false);
+
     }
 
     @Override

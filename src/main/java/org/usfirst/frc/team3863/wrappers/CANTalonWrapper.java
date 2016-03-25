@@ -81,11 +81,11 @@ public class CANTalonWrapper {
     }
 
     public double get() {
-        return (primary.get() + secondary.get()) / 2;
+        return primary.get();
     }
 
     public int getEncPosition() {
-        return (primary.getEncPosition() + secondary.getEncPosition()) / 2;
+       return primary.getEncPosition();
     }
 
     public void setEncPosition(int newPosition) {
@@ -129,7 +129,7 @@ public class CANTalonWrapper {
 
 
     public double getPosition() {
-        return (primary.getPosition() + secondary.getPosition()) / 2;
+        return primary.getPosition();
     }
 
 
@@ -140,12 +140,12 @@ public class CANTalonWrapper {
 
 
     public double getSpeed() {
-        return (primary.getSpeed() + secondary.getSpeed()) / 2;
+        return primary.getSpeed();
     }
 
 
     public CANTalon.TalonControlMode getControlMode() {
-        return CANTalon.TalonControlMode.valueOf(primary.getControlMode().value & secondary.getControlMode().value);
+        return CANTalon.TalonControlMode.valueOf(primary.getControlMode().value);
     }
 
 

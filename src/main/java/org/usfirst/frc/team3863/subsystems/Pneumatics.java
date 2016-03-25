@@ -32,7 +32,11 @@ public class Pneumatics extends Subsystem {
         return pressureTransducer;
     }
 
-    public double getPressure(){
+    public double getPressureRaw() {
+        return pressureTransducer.getAverageVoltage();
+    }
+
+    public double getPressure() {
         return Math.max((pressureTransducer.getAverageVoltage() * 43.7) - 51.1, 0);
     }
 

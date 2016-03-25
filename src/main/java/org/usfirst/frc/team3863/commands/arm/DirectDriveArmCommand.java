@@ -24,6 +24,7 @@ public class DirectDriveArmCommand extends BaseCommand {
     protected void initialize() {
         arm.armMotor.enable();
         arm.armMotor.enableControl();
+        arm.armMotor.enableBrakeMode(false);
         power = 0.25;
     }
 

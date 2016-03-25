@@ -14,7 +14,7 @@ public class ElevateArmToPosCommand extends BaseCommand {
     public final double tolerance;
 
     public ElevateArmToPosCommand(double pos) {
-        this(pos, 0.02);
+        this(pos, 0.03);
     }
 
     public ElevateArmToPosCommand(double pos, double tolerance){
@@ -26,11 +26,16 @@ public class ElevateArmToPosCommand extends BaseCommand {
     }
 
     public ElevateArmToPosCommand(double pos, double tolerance, double timeout, double gain) {
+        this(pos, tolerance, timeout, gain, false);
+    }
+
+    public ElevateArmToPosCommand(double pos, double tolerance, double timeout, double gain, boolean brake) {
         super("Elevate Arm to Position");
         this.gain = gain;
         requires(arm);
         this.pos = pos;
         this.tolerance = tolerance;
+        arm.armMotor.enableBrakeMode(brake);
         if (timeout > 0) setTimeout(timeout);
     }
 

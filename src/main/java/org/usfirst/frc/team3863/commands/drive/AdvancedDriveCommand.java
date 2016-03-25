@@ -15,9 +15,13 @@ public class AdvancedDriveCommand extends BaseCommand {
     public boolean fastMode = false;
     public boolean state = false;
 
+    public static AdvancedDriveCommand getInstance() {
+        if (instance == null) instance = new AdvancedDriveCommand();
+        return instance;
+    }
+
     public AdvancedDriveCommand() {
         super("Auto Transmission Command");
-        instance = this;
         requires(transmission);
         requires(driveTrain);
     }
@@ -31,22 +35,26 @@ public class AdvancedDriveCommand extends BaseCommand {
 
     @Override
     protected void execute() {
-        double l = 0, r = 0;
+        double l, r;
+        int mode;
 
         if (oi.joyButtonArcadeMode.get()) {
+            mode = 1;
             l = oi.rightJoystick.getTwist() - oi.rightJoystick.getY();
             r = -oi.rightJoystick.getTwist() - oi.rightJoystick.getY();
         } else if (oi.joyButtonTurnMode.get()) {
+            mode = 2;
             l = oi.leftJoystick.getRawAxis(3);
             r = -oi.leftJoystick.getRawAxis(3);
         } else {
+            mode = 0;
             l = -oi.leftJoystick.getY();
             r = -oi.rightJoystick.getY();
         }
 
         if (fastMode) {
 
-            if (l * r + 0.05 < 0) {
+            if (l * r + 0.01 < 0 || mode == 2) {
                 state = false;
             } else {
                 if (Math.max(Math.abs(l), Math.abs(r)) < 0.5) {
@@ -54,7 +62,7 @@ public class AdvancedDriveCommand extends BaseCommand {
                     l *= 2;
                     r *= 2;
                 } else if (Math.abs(l) + Math.abs(r) > 0.5) {
-                    if (Math.abs(l - r) > 0.75 || l * r < 0) {
+                    if (Math.abs(l - r) > 0.75) {
                         state = false;
                     } else if (Math.abs(l - r) < 0.25) {
                         state = true;

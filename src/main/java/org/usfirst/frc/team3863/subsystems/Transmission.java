@@ -3,6 +3,7 @@ package org.usfirst.frc.team3863.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team3863.RobotMap;
+import org.usfirst.frc.team3863.commands.drive.AdvancedDriveCommand;
 import org.usfirst.frc.team3863.commands.drive.AutoTransmissionCommand;
 
 /**
@@ -20,6 +21,6 @@ public class Transmission extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new AutoTransmissionCommand());
+       // setDefaultCommand(AdvancedDriveCommand.getInstance());
     }
 }

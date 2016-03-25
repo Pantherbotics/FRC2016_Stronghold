@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3863.commands.BaseCommand;
 import org.usfirst.frc.team3863.commands.CompressorControlCommand;
+import org.usfirst.frc.team3863.commands.arm.ElevateArmToPosCommand;
+import org.usfirst.frc.team3863.commands.arm.ZeroArmCommand;
 import org.usfirst.frc.team3863.commands.drive.DriveTimeCommand;
 
 import java.io.PrintStream;
@@ -39,7 +41,9 @@ public class Robot extends IterativeRobot {
         autonChooser.addDefault("Auton On", new CommandGroup() {
             {
                 addSequential(new CompressorControlCommand(true));
-                addSequential(new DriveTimeCommand(5.0, -0.7));
+                addSequential(new ZeroArmCommand());
+                addSequential(new ElevateArmToPosCommand(1, 0.05, 3));
+                addSequential(new DriveTimeCommand(6.0, -0.7));
             }
 
             @Override
@@ -87,8 +91,6 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        BaseCommand.arm.update();
-
         SmartDashboard.putNumber("Pressure", BaseCommand.pneumatics.getPressure());
         SmartDashboard.putNumber("Pressure Meter", BaseCommand.pneumatics.getPressure());
     }

@@ -11,6 +11,7 @@ import org.usfirst.frc.team3863.commands.arm.DirectDriveArmCommand;
 import org.usfirst.frc.team3863.commands.arm.ElevateArmToPosCommand;
 import org.usfirst.frc.team3863.commands.arm.ExtendBigPistonCommand;
 import org.usfirst.frc.team3863.commands.arm.ZeroArmCommand;
+import org.usfirst.frc.team3863.commands.drive.AdvancedDriveCommand;
 import org.usfirst.frc.team3863.commands.drive.AutoTransmissionCommand;
 import org.usfirst.frc.team3863.commands.endeffector.IntakeCommand;
 import org.usfirst.frc.team3863.commands.endeffector.TimedIntakeCommand;
@@ -25,7 +26,7 @@ import org.usfirst.frc.team3863.commands.groups.ShootGroup;
  */
 public class OI {
 
-    public CameraServerModded camera = new CameraServerModded();
+    public CameraServerModdedBK camera = new CameraServerModdedBK();
 
     public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
     public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
@@ -54,30 +55,40 @@ public class OI {
             contIntake = new JoystickButton(controller, 2),
             contExtend = new JoystickButton(controller, 5),
             contClimb = new JoystickButton(controller, 7),
-            contLock = new JoystickButton(controller, 10);
+            contLock = new JoystickButton(controller, 10),
+            contReZero = new JoystickButton(controller, 9);
 
 
     /**
      * Constructor that registers all the buttons and there respective commands
      */
     public OI() {
+//        camera.start();
+
         camera.setQuality(50);
         camera.startAutomaticCapture("cam0");
 
-
-        joyButtonTransmissionHigh.whenPressed(new AutoTransmissionCommand.Switch(true));
-        joyButtonTransmissionLow.whenPressed(new AutoTransmissionCommand.Switch(false));
+        joyButtonTransmissionHigh.whenPressed(new AdvancedDriveCommand.Switch(true));
+        joyButtonTransmissionLow.whenPressed(new AdvancedDriveCommand.Switch(false));
 
         contArmDown.whenPressed(new DirectDriveArmCommand(true, contArmDown));
         contArmUp.whenPressed(new DirectDriveArmCommand(false, contArmUp));
 
         contClimb.whenPressed(new ClimbGroup());
+
         new Trigger() {
             @Override
             public boolean get() {
                 return contLock.get() && contExtend.get();
             }
         }.whenActive(new ExtendBigPistonCommand(true));
+
+        new Trigger() {
+            @Override
+            public boolean get() {
+                return contLock.get() && contReZero.get();
+            }
+        }.whenActive(new ZeroArmCommand());
 
         new Trigger() {
             @Override
@@ -98,7 +109,7 @@ public class OI {
             public boolean get() {
                 return controller.getPOV() == 180;
             }
-        }.whenActive(new ZeroArmCommand());
+        }.whenActive(new ElevateArmToPosCommand(0));
 
         new Trigger() {
             @Override

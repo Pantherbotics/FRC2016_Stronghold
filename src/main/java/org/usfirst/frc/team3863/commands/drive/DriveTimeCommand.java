@@ -15,6 +15,7 @@ public class DriveTimeCommand extends BaseCommand {
     public DriveTimeCommand(double timeout, double speed) {
         this.speed = speed;
         requires(driveTrain);
+        requires(pneumatics);
         if(timeout > 0){
             setTimeout(timeout);
         } else setTimeout(0.1);

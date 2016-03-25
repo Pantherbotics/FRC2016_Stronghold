@@ -54,7 +54,6 @@ public class Arm extends Subsystem {
         armMotor.set(0);
     }
 
-    public void update(){
-        if(armMotor.isRevLimitSwitchClosed()) offset = - magEncoder.getVoltage();
+    public void reZero(){offset = - magEncoder.getVoltage();
     }
 }

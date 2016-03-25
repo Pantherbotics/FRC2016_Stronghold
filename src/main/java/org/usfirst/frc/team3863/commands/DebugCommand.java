@@ -9,6 +9,7 @@ public class DebugCommand extends BaseCommand {
     @Override
     protected void initialize() {
         System.out.println("ARM: " + arm.encVal() + "   OFFSET: " + arm.getOffset() + "   BALL: " + intake.detectorValue() );
+        System.out.println("PRESSURE: " + pneumatics.getPressureRaw() + "   SPEED-L: " + driveTrain.leftMotors.getSpeed());
     }
 
     @Override
