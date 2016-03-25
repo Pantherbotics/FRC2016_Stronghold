@@ -14,7 +14,7 @@ public class ElevateArmToPosCommand extends BaseCommand {
     public final double tolerance;
 
     public ElevateArmToPosCommand(double pos) {
-        this(pos, 0.05);
+        this(pos, 0.02);
     }
 
     public ElevateArmToPosCommand(double pos, double tolerance){

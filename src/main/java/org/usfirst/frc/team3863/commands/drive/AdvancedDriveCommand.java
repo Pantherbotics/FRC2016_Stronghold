@@ -1,47 +1,73 @@
 package org.usfirst.frc.team3863.commands.drive;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import org.usfirst.frc.team3863.commands.BaseCommand;
 
 /**
- * Created by Fox on 2/20/2016.
+ * Created by Fox on 3/24/2016.
  * Project: 2016Robot
  */
-public class AutoTransmissionCommand extends BaseCommand {
+public class AdvancedDriveCommand extends BaseCommand {
 
-    public static AutoTransmissionCommand instance;
+    public static AdvancedDriveCommand instance;
 
     public boolean fastMode = false;
     public boolean state = false;
 
-    public AutoTransmissionCommand() {
+    public AdvancedDriveCommand() {
         super("Auto Transmission Command");
         instance = this;
         requires(transmission);
+        requires(driveTrain);
     }
 
     @Override
     protected void initialize() {
-        System.out.println("Starting Transmission");
+        System.out.println("Starting Advanced Drive");
+        driveTrain.enableMotors();
+        driveTrain.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     }
 
     @Override
     protected void execute() {
+        double l = 0, r = 0;
+
+        if (oi.joyButtonArcadeMode.get()) {
+            l = oi.rightJoystick.getTwist() - oi.rightJoystick.getY();
+            r = -oi.rightJoystick.getTwist() - oi.rightJoystick.getY();
+        } else if (oi.joyButtonTurnMode.get()) {
+            l = oi.leftJoystick.getRawAxis(3);
+            r = -oi.leftJoystick.getRawAxis(3);
+        } else {
+            l = -oi.leftJoystick.getY();
+            r = -oi.rightJoystick.getY();
+        }
+
         if (fastMode) {
-            double a = driveTrain.leftMotors.getOutputValue(), b = driveTrain.rightMotors.getOutputValue();
-            if (a * b + 0.04 < 0) {
+
+            if (l * r + 0.05 < 0) {
                 state = false;
-            } else if (Math.abs(a) + Math.abs(b) > 0.5) {
-                if (Math.abs(a - b) > 0.75 || a * b < 0) {
+            } else {
+                if (Math.max(Math.abs(l), Math.abs(r)) < 0.5) {
                     state = false;
-                } else if (Math.abs(a - b) < 0.25) {
-                    state = true;
+                    l *= 2;
+                    r *= 2;
+                } else if (Math.abs(l) + Math.abs(r) > 0.5) {
+                    if (Math.abs(l - r) > 0.75 || l * r < 0) {
+                        state = false;
+                    } else if (Math.abs(l - r) < 0.25) {
+                        state = true;
+                    }
                 }
+
             }
             transmission.getDriveTrainSolenoid().set(state ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
         } else {
             transmission.getDriveTrainSolenoid().set(DoubleSolenoid.Value.kReverse);
         }
+
+        driveTrain.tankDrive(l, r);
     }
 
     @Override
@@ -51,7 +77,7 @@ public class AutoTransmissionCommand extends BaseCommand {
 
     @Override
     protected void end() {
-
+        driveTrain.stopMotors();
     }
 
     @Override

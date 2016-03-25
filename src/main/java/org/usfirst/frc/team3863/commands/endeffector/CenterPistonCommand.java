@@ -1,21 +1,22 @@
-package org.usfirst.frc.team3863.commands.drive;
+package org.usfirst.frc.team3863.commands.endeffector;
 
 import org.usfirst.frc.team3863.commands.BaseCommand;
 
 /**
- * Created by robotics on 2/8/2016.
+ * Created by Fox on 3/24/2016.
+ * Project: 2016Robot
  */
-public class SpinCommand extends BaseCommand {
+public class CenterPistonCommand extends BaseCommand {
 
-    boolean direction;
+    public final boolean state;
 
-    public SpinCommand(boolean direction) {
-        requires(driveTrain);
-        this.direction = direction;
+    public CenterPistonCommand(boolean state) {
+        this.state = state;
     }
 
     @Override
     protected void initialize() {
+        shooter.setCenteringSolenoid(state);
     }
 
     @Override
@@ -25,7 +26,7 @@ public class SpinCommand extends BaseCommand {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override

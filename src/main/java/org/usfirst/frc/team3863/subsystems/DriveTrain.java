@@ -17,8 +17,8 @@ import org.usfirst.frc.team3863.wrappers.CANTalonWrapper;
  */
 public class DriveTrain extends Subsystem {
 
-    public CANTalonWrapper leftMotors = new CANTalonWrapper(RobotMap.LEFT_DRIVE_MOTOR_0, RobotMap.LEFT_DRIVE_MOTOR_1);
-    public CANTalonWrapper rightMotors = new CANTalonWrapper(RobotMap.RIGHT_DRIVE_MOTOR_0, RobotMap.RIGHT_DRIVE_MOTOR_1, true);
+    public CANTalonWrapper leftMotors = new CANTalonWrapper(RobotMap.LEFT_DRIVE_MOTOR_0, RobotMap.LEFT_DRIVE_MOTOR_1, true);
+    public CANTalonWrapper rightMotors = new CANTalonWrapper(RobotMap.RIGHT_DRIVE_MOTOR_0, RobotMap.RIGHT_DRIVE_MOTOR_1);
 
 
     public DriveTrain() {
@@ -44,7 +44,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void tankDrive(Joystick left, Joystick right) {
-        this.tankDrive(left.getY(), right.getY());
+        this.tankDrive(-left.getY(), -right.getY());
     }
 
     /**

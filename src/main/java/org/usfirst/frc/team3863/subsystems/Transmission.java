@@ -11,23 +11,9 @@ import org.usfirst.frc.team3863.commands.drive.AutoTransmissionCommand;
  */
 public class Transmission extends Subsystem {
 
-    /**
-     * <hr>
-     * <h1>Drive Train Solenoid</h1>
-     * <p>The DoubleSolenoid that handles the transmission on the robot.</p>
-     *
-     * @see org.usfirst.frc.team3863.subsystems.DriveTrain
-     */
     DoubleSolenoid driveTrainSolenoid = new DoubleSolenoid(RobotMap.DRIVE_TRAIN_SOLENOID_1, RobotMap.DRIVE_TRAIN_SOLENOID_0);
 
 
-    /**
-     * <hr>
-     * <h1>Get Drive Train Solenoid</h1>
-     * <p>Eh... Returns the DoubleSolenoid that handles the transmission.</p>
-     *
-     * @see org.usfirst.frc.team3863.subsystems.DriveTrain
-     */
     public DoubleSolenoid getDriveTrainSolenoid() {
         return driveTrainSolenoid;
     }

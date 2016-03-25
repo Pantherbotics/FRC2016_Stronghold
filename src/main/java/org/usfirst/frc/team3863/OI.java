@@ -4,17 +4,19 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import org.usfirst.frc.team3863.commands.ChangeCameraCommand;
-import org.usfirst.frc.team3863.commands.CompressorControlCommand;
 import org.usfirst.frc.team3863.commands.DebugCommand;
+import org.usfirst.frc.team3863.commands.StubCommand;
+import org.usfirst.frc.team3863.commands.TestCommand;
 import org.usfirst.frc.team3863.commands.arm.DirectDriveArmCommand;
+import org.usfirst.frc.team3863.commands.arm.ElevateArmToPosCommand;
 import org.usfirst.frc.team3863.commands.arm.ExtendBigPistonCommand;
+import org.usfirst.frc.team3863.commands.arm.ZeroArmCommand;
 import org.usfirst.frc.team3863.commands.drive.AutoTransmissionCommand;
 import org.usfirst.frc.team3863.commands.endeffector.IntakeCommand;
 import org.usfirst.frc.team3863.commands.endeffector.TimedIntakeCommand;
 import org.usfirst.frc.team3863.commands.groups.CenterGroup;
 import org.usfirst.frc.team3863.commands.groups.ClimbGroup;
 import org.usfirst.frc.team3863.commands.groups.ShootGroup;
-import org.usfirst.frc.team3863.util.TriggerCollection;
 
 /**
  * <hr>
@@ -25,53 +27,21 @@ public class OI {
 
     public CameraServerModded camera = new CameraServerModded();
 
-    /**
-     * <hr>
-     * Left Joystick
-     */
+    public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
     public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
 
-    /**
-     * <hr>
-     * Left Joystick Buttons...
-     */
     public JoystickButton
-            rightJoyTrigger = new JoystickButton(rightJoystick, 1),
-            rightJoyButton2 = new JoystickButton(rightJoystick, 2),
-            btnArmLower = new JoystickButton(rightJoystick, 3),
-            rightJoyButton4 = new JoystickButton(rightJoystick, 4),
-            btnArmRaise = new JoystickButton(rightJoystick, 5),
-            rightJoyButton6 = new JoystickButton(rightJoystick, 6),
-            rightJoyButton7 = new JoystickButton(rightJoystick, 7),
-            rightJoyButton8 = new JoystickButton(rightJoystick, 8),
-            rightJoyButton9 = new JoystickButton(rightJoystick, 9),
-            rightJoyButton10 = new JoystickButton(rightJoystick, 10),
-            rightJoyButton11 = new JoystickButton(rightJoystick, 11),
-            rightJoyButton12 = new JoystickButton(rightJoystick, 12);
+            joyButtonTransmissionHigh = new JoystickButton(rightJoystick, 1),
+            joyButtonTransmissionLow = new JoystickButton(leftJoystick, 1),
+            joyButtonCameraShoot1 = new JoystickButton(leftJoystick, 3),
+            joyButtonCameraShoot2 = new JoystickButton(leftJoystick, 5),
+            joyButtonCameraDrive1 = new JoystickButton(leftJoystick, 4),
+            joyButtonCameraDrive2 = new JoystickButton(leftJoystick, 6),
+            joyButtonDebug = new JoystickButton(rightJoystick, 11),
+            joyButtonTest = new JoystickButton(rightJoystick, 10),
+            joyButtonTurnMode = new JoystickButton(leftJoystick, 7),
+            joyButtonArcadeMode = new JoystickButton(rightJoystick, 2);
 
-    /**
-     * <hr>
-     * Right Joystick
-     */
-    public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
-
-    /**
-     * <hr>
-     * Right Joystick Buttons...
-     */
-    public JoystickButton
-            leftJoyTrigger = new JoystickButton(leftJoystick, 1),
-            intakeButton = new JoystickButton(leftJoystick, 2),
-            leftJoyButton3 = new JoystickButton(leftJoystick, 3),
-            leftJoyButton4 = new JoystickButton(leftJoystick, 4),
-            leftJoyButton5 = new JoystickButton(leftJoystick, 5),
-            leftJoyButton6 = new JoystickButton(leftJoystick, 6),
-            leftJoyButton7 = new JoystickButton(leftJoystick, 7),
-            leftJoyButton8 = new JoystickButton(leftJoystick, 8),
-            leftJoyButton9 = new JoystickButton(leftJoystick, 9),
-            leftJoyButton10 = new JoystickButton(leftJoystick, 10),
-            leftJoyButton11 = new JoystickButton(leftJoystick, 11),
-            leftJoyButton12 = new JoystickButton(leftJoystick, 12);
 
     public Joystick controller = new Joystick(RobotMap.CONTROLLER);
 
@@ -95,17 +65,12 @@ public class OI {
         camera.startAutomaticCapture("cam0");
 
 
-        rightJoyTrigger.whenPressed(new AutoTransmissionCommand.Switch(true));
-        leftJoyTrigger.whenPressed(new AutoTransmissionCommand.Switch(false));
+        joyButtonTransmissionHigh.whenPressed(new AutoTransmissionCommand.Switch(true));
+        joyButtonTransmissionLow.whenPressed(new AutoTransmissionCommand.Switch(false));
 
-        btnArmLower.whenPressed(new DirectDriveArmCommand(true, btnArmLower));
-        btnArmRaise.whenPressed(new DirectDriveArmCommand(false, btnArmRaise));
         contArmDown.whenPressed(new DirectDriveArmCommand(true, contArmDown));
         contArmUp.whenPressed(new DirectDriveArmCommand(false, contArmUp));
 
-
-        rightJoyButton7.whenPressed(new ExtendBigPistonCommand(true));
-        rightJoyButton8.whenPressed(new ClimbGroup());
         contClimb.whenPressed(new ClimbGroup());
         new Trigger() {
             @Override
@@ -114,24 +79,64 @@ public class OI {
             }
         }.whenActive(new ExtendBigPistonCommand(true));
 
-        rightJoyButton11.whenPressed(new CompressorControlCommand(true));
-        rightJoyButton12.whenPressed(new CompressorControlCommand(false));
+        new Trigger() {
+            @Override
+            public boolean get() {
+                return joyButtonCameraDrive1.get() || joyButtonCameraDrive2.get();
+            }
+        }.whenActive(new ChangeCameraCommand("cam0"));
 
-        leftJoyButton10.whenPressed(new ChangeCameraCommand("cam0"));
-        leftJoyButton11.whenPressed(new ChangeCameraCommand("cam3"));
-//        leftJoyButton10.whenPressed(new PrepareShootGroup());
-//        leftJoyButton11.whenPressed(new ClimbGroup());
+        new Trigger() {
+            @Override
+            public boolean get() {
+                return joyButtonCameraShoot1.get() || joyButtonCameraShoot2.get();
+            }
+        }.whenActive(new ChangeCameraCommand("cam3"));
 
-        leftJoyButton9.whenPressed(new DebugCommand());
+        new Trigger() {
+            @Override
+            public boolean get() {
+                return controller.getPOV() == 180;
+            }
+        }.whenActive(new ZeroArmCommand());
 
-        TriggerCollection col = new TriggerCollection(false, intakeButton, contIntake);
+        new Trigger() {
+            @Override
+            public boolean get() {
+                return controller.getPOV() == 270;
+            }
+        }.whenActive(new ElevateArmToPosCommand(1.08, 0.005, -1, 8));
 
-        leftJoyButton4.whenPressed(new ShootGroup());
-        intakeButton.whenPressed(new IntakeCommand(0.5, col));
-        leftJoyButton5.whileHeld(new CenterGroup());
-        leftJoyButton3.whenPressed(new TimedIntakeCommand(0.5, 1, true));
+        new Trigger() {
+            @Override
+            public boolean get() {
+                return controller.getPOV() == 0;
+            }
+        }.whenActive(new ElevateArmToPosCommand(1.1, 0.005, -1, 8));
+
+        new Trigger() {
+            int last;
+
+            @Override
+            public boolean get() {
+                boolean state = controller.getPOV() != -1 && controller.getPOV() != last;
+                last = controller.getPOV();
+                return state;
+            }
+        }.whenActive(new StubCommand() {
+            @Override
+            protected void initialize() {
+                System.out.println(controller.getPOV());
+            }
+        });
+
+        joyButtonDebug.whenPressed(new DebugCommand());
+        joyButtonTest.whenPressed(new TestCommand());
+
+        //TriggerCollection col = new TriggerCollection(false, contIntake);
+
         contFire.whenPressed(new ShootGroup());
-        contIntake.whenPressed(new IntakeCommand(0.5, col));
+        contIntake.whenPressed(new IntakeCommand(0.5, contIntake));
         contCenter.whileHeld(new CenterGroup());
         contEject.whenPressed(new TimedIntakeCommand(0.5, 1, true));
     }

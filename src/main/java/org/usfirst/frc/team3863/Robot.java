@@ -22,8 +22,6 @@ import java.io.PrintStream;
  */
 public class Robot extends IterativeRobot {
 
-    CameraServer cameraServer = CameraServer.getInstance();
-
     Command autonCommand;
     SendableChooser autonChooser;
 
@@ -35,15 +33,13 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 
-        cameraServer.setQuality(50);
-        cameraServer.startAutomaticCapture("cam0");
         BaseCommand.init();
         autonChooser = new SendableChooser();
 
         autonChooser.addDefault("Auton On", new CommandGroup() {
             {
                 addSequential(new CompressorControlCommand(true));
-                addSequential(new DriveTimeCommand(5.0, 0.7));
+                addSequential(new DriveTimeCommand(5.0, -0.7));
             }
 
             @Override

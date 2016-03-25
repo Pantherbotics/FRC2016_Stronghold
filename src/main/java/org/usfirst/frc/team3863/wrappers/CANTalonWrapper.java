@@ -10,19 +10,9 @@ import edu.wpi.first.wpilibj.CANTalon;
 @SuppressWarnings("SameParameterValue")
 public class CANTalonWrapper {
 
-    /**
-     * <hr>
-     * <h1>Inner CANTalon reference</h1>
-     * <p>These motors should only be accessable from with the CANTalonWrapper class.</p>
-     */
     private CANTalon primary, secondary;
     double value = 0;
 
-    /**
-     * <hr>
-     * <h1>CANTalonWrapper Constructor</h1>
-     * <p>Ports for each motor.</p>
-     */
     public CANTalonWrapper(int primary, int secondary) {
         this(primary, secondary, false);
     }
@@ -31,11 +21,6 @@ public class CANTalonWrapper {
         return value;
     }
 
-    /**
-     * <hr>
-     * <h1>CANTalonWrapper Constructor</h1>
-     * <p>Ports for each motor, and a boolean for if they should be inverted by default.</p>
-     */
     public CANTalonWrapper(int primary, int secondary, boolean invert) {
         this.primary = new CANTalon(primary);
         this.secondary = new CANTalon(secondary);
