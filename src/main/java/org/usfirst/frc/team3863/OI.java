@@ -4,15 +4,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import org.usfirst.frc.team3863.commands.ChangeCameraCommand;
-import org.usfirst.frc.team3863.commands.DebugCommand;
-import org.usfirst.frc.team3863.commands.StubCommand;
-import org.usfirst.frc.team3863.commands.TestCommand;
 import org.usfirst.frc.team3863.commands.arm.DirectDriveArmCommand;
-import org.usfirst.frc.team3863.commands.arm.ElevateArmToPosCommand;
 import org.usfirst.frc.team3863.commands.arm.ExtendBigPistonCommand;
-import org.usfirst.frc.team3863.commands.arm.ZeroArmCommand;
 import org.usfirst.frc.team3863.commands.drive.AdvancedDriveCommand;
-import org.usfirst.frc.team3863.commands.drive.AutoTransmissionCommand;
 import org.usfirst.frc.team3863.commands.endeffector.IntakeCommand;
 import org.usfirst.frc.team3863.commands.endeffector.TimedIntakeCommand;
 import org.usfirst.frc.team3863.commands.groups.CenterGroup;
@@ -37,26 +31,26 @@ public class OI {
             joyButtonCameraShoot1 = new JoystickButton(leftJoystick, 3),
             joyButtonCameraShoot2 = new JoystickButton(leftJoystick, 5),
             joyButtonCameraDrive1 = new JoystickButton(leftJoystick, 4),
-            joyButtonCameraDrive2 = new JoystickButton(leftJoystick, 6),
-            joyButtonDebug = new JoystickButton(rightJoystick, 11),
-            joyButtonTest = new JoystickButton(rightJoystick, 10),
-            joyButtonTurnMode = new JoystickButton(leftJoystick, 7),
-            joyButtonArcadeMode = new JoystickButton(rightJoystick, 2);
+            joyButtonCameraDrive2 = new JoystickButton(leftJoystick, 6);
+//            joyButtonDebug = new JoystickButton(rightJoystick, 11),
+//            joyButtonTest = new JoystickButton(rightJoystick, 10),
+//            joyButtonTurnMode = new JoystickButton(leftJoystick, 7);
+//            joyButtonArcadeMode = new JoystickButton(rightJoystick, 2);
 
 
-    public Joystick controller = new Joystick(RobotMap.CONTROLLER);
+//    public Joystick controller = new Joystick(RobotMap.CONTROLLER);
 
     public JoystickButton
-            contArmUp = new JoystickButton(controller, 6),
-            contArmDown = new JoystickButton(controller, 8),
-            contFire = new JoystickButton(controller, 1),
-            contEject = new JoystickButton(controller, 4),
-            contCenter = new JoystickButton(controller, 3),
-            contIntake = new JoystickButton(controller, 2),
-            contExtend = new JoystickButton(controller, 5),
-            contClimb = new JoystickButton(controller, 7),
-            contLock = new JoystickButton(controller, 10),
-            contReZero = new JoystickButton(controller, 9);
+            contArmUp = new JoystickButton(rightJoystick, 3),
+            contArmDown = new JoystickButton(rightJoystick, 4),
+            contFire = new JoystickButton(rightJoystick, 2),
+            contEject = new JoystickButton(rightJoystick, 9),
+            contCenter = new JoystickButton(rightJoystick, 11),
+            contIntake = new JoystickButton(rightJoystick, 12),
+            contExtend = new JoystickButton(rightJoystick, 10),
+            contClimb = new JoystickButton(rightJoystick, 7),
+            contLock = new JoystickButton(rightJoystick, 8);
+//            contReZero = new JoystickButton(controller, 9);
 
 
     /**
@@ -83,12 +77,12 @@ public class OI {
             }
         }.whenActive(new ExtendBigPistonCommand(true));
 
-        new Trigger() {
-            @Override
-            public boolean get() {
-                return contLock.get() && contReZero.get();
-            }
-        }.whenActive(new ZeroArmCommand());
+//        new Trigger() {
+//            @Override
+//            public boolean get() {
+//                return contLock.get() && contReZero.get();
+//            }
+//        }.whenActive(new ZeroArmCommand());
 
         new Trigger() {
             @Override
@@ -104,45 +98,8 @@ public class OI {
             }
         }.whenActive(new ChangeCameraCommand("cam3"));
 
-        new Trigger() {
-            @Override
-            public boolean get() {
-                return controller.getPOV() == 180;
-            }
-        }.whenActive(new ElevateArmToPosCommand(0));
-
-        new Trigger() {
-            @Override
-            public boolean get() {
-                return controller.getPOV() == 270;
-            }
-        }.whenActive(new ElevateArmToPosCommand(1.08, 0.005, -1, 8));
-
-        new Trigger() {
-            @Override
-            public boolean get() {
-                return controller.getPOV() == 0;
-            }
-        }.whenActive(new ElevateArmToPosCommand(1.1, 0.005, -1, 8));
-
-        new Trigger() {
-            int last;
-
-            @Override
-            public boolean get() {
-                boolean state = controller.getPOV() != -1 && controller.getPOV() != last;
-                last = controller.getPOV();
-                return state;
-            }
-        }.whenActive(new StubCommand() {
-            @Override
-            protected void initialize() {
-                System.out.println(controller.getPOV());
-            }
-        });
-
-        joyButtonDebug.whenPressed(new DebugCommand());
-        joyButtonTest.whenPressed(new TestCommand());
+//        joyButtonDebug.whenPressed(new DebugCommand());
+//        joyButtonTest.whenPressed(new TestCommand());
 
         //TriggerCollection col = new TriggerCollection(false, contIntake);
 
