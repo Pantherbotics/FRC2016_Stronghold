@@ -26,8 +26,8 @@ public class OI {
     public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
 
     public JoystickButton
-            joyButtonTransmissionHigh = new JoystickButton(rightJoystick, 1),
-            joyButtonTransmissionLow = new JoystickButton(leftJoystick, 1),
+            joyButtonTransmissionHigh = new JoystickButton(leftJoystick, 1),
+            joyButtonTransmissionLow = new JoystickButton(leftJoystick, 2),
             joyButtonCameraShoot1 = new JoystickButton(leftJoystick, 3),
             joyButtonCameraShoot2 = new JoystickButton(leftJoystick, 5),
             joyButtonCameraDrive1 = new JoystickButton(leftJoystick, 4),
@@ -41,15 +41,15 @@ public class OI {
 //    public Joystick controller = new Joystick(RobotMap.CONTROLLER);
 
     public JoystickButton
-            contArmUp = new JoystickButton(rightJoystick, 3),
-            contArmDown = new JoystickButton(rightJoystick, 4),
-            contFire = new JoystickButton(rightJoystick, 2),
-            contEject = new JoystickButton(rightJoystick, 9),
-            contCenter = new JoystickButton(rightJoystick, 11),
-            contIntake = new JoystickButton(rightJoystick, 12),
+            contArmUp = new JoystickButton(rightJoystick, 5),
+            contArmDown = new JoystickButton(rightJoystick, 3),
+            contIntake = new JoystickButton(rightJoystick, 6),
+            contFire = new JoystickButton(rightJoystick, 4),
+            contCenter = new JoystickButton(rightJoystick, 2),
+            contEject = new JoystickButton(rightJoystick, 12),
             contExtend = new JoystickButton(rightJoystick, 10),
-            contClimb = new JoystickButton(rightJoystick, 7),
-            contLock = new JoystickButton(rightJoystick, 8);
+            contClimb = new JoystickButton(rightJoystick, 9),
+            contLock = new JoystickButton(rightJoystick, 11);
 //            contReZero = new JoystickButton(controller, 9);
 
 
