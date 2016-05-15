@@ -38,19 +38,19 @@ public class AdvancedDriveCommand extends BaseCommand {
         double l, r;
         int mode;
 
-        if (oi.joyButtonArcadeMode.get()) {
-            mode = 1;
-            l = oi.rightJoystick.getTwist() - oi.rightJoystick.getY();
-            r = -oi.rightJoystick.getTwist() - oi.rightJoystick.getY();
-        } else if (oi.joyButtonTurnMode.get()) {
-            mode = 2;
-            l = oi.leftJoystick.getRawAxis(3);
-            r = -oi.leftJoystick.getRawAxis(3);
-        } else {
+//        if (oi.joyButtonArcadeMode.get()) {
+//            mode = 1;
+//            l = oi.rightJoystick.getTwist() - oi.rightJoystick.getY();
+//            r = -oi.rightJoystick.getTwist() - oi.rightJoystick.getY();
+//        } else if (oi.joyButtonTurnMode.get()) {
+//            mode = 2;
+//            l = oi.leftJoystick.getRawAxis(3);
+//            r = -oi.leftJoystick.getRawAxis(3);
+//        } else {
             mode = 0;
             l = -oi.leftJoystick.getY();
             r = -oi.rightJoystick.getY();
-        }
+//        }
 
         if (fastMode) {
 

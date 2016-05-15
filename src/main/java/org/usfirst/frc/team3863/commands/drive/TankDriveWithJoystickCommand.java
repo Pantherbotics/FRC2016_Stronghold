@@ -20,13 +20,13 @@ public class TankDriveWithJoystickCommand extends BaseCommand {
     @Override
     protected void execute() {
         // TODO Auto-generated method stub
-        if (oi.joyButtonArcadeMode.get()) {
-            driveTrain.tankDrive(oi.rightJoystick.getTwist() - oi.rightJoystick.getY(), -oi.rightJoystick.getTwist() - oi.rightJoystick.getY());
-        } else if (oi.joyButtonTurnMode.get()) {
-            driveTrain.tankDrive(oi.leftJoystick.getRawAxis(3), -oi.leftJoystick.getRawAxis(3));
-        } else {
+//        if (oi.joyButtonArcadeMode.get()) {
+//            driveTrain.tankDrive(oi.rightJoystick.getTwist() - oi.rightJoystick.getY(), -oi.rightJoystick.getTwist() - oi.rightJoystick.getY());
+//        } else if (oi.joyButtonTurnMode.get()) {
+//            driveTrain.tankDrive(oi.leftJoystick.getRawAxis(3), -oi.leftJoystick.getRawAxis(3));
+//        } else {
             driveTrain.tankDrive(oi.leftJoystick, oi.rightJoystick);
-        }
+//        }
     }
 
     @Override
